@@ -19,13 +19,28 @@ public class ISOConveyorManager : MonoBehaviour
     public GameObject conBelt;
     private ISOConveyorBelt conBeltComp;
 
+    [Header("BombStuff")]
+    public GameObject[] Bombs;
+    public GameObject[] spawnpoints;
+
+    [Header("GameStuff")]
+    bool isActive;
+    public float spawnTime;
+    private float spawnTimer;
+    [SerializeField, Range(0,1f)] private float spawnPecentage;
+
 
     private void Start() {
         startPos = FallAway.transform.position;
         endPos = FallAway.transform.position - transform.up * moveDistance;
         conBelt = transform.Find("Platform").gameObject;
         conBeltComp = conBelt.GetComponent<ISOConveyorBelt>();
+        GetSpawnpoints();
         
+    }
+
+    private void GetSpawnpoints() {
+        spawnpoints = GameObject.FindGameObjectsWithTag("ISOSpawn");  
     }
 
 
@@ -44,6 +59,25 @@ public class ISOConveyorManager : MonoBehaviour
         if (perc >= 1.0) {
             removeFallAway = false;
             Destroy(FallAway, 0.1f);
+            isActive = true;
+            
+        }
+
+        //the game is running
+        if (isActive){
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer > spawnTime) {
+                spawnTimer = 0;
+                for (int i = 0; i < spawnpoints.Length; i++)
+                {
+                    float randomChance = Random.Range (0f, 1f);
+                    if (randomChance <= spawnPecentage){
+                        GameObject clone = Instantiate(Bombs[Random.Range (0, Bombs.Length)], spawnpoints[i].transform);
+                        clone.transform.parent = GameObject.Find("^TRASH").transform;
+                    }
+                }
+                spawnPecentage = spawnPecentage + 0.01f;
+            }
         }
         
 

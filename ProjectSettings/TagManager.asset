@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Env_End
+  - Env_Start
+  - IsoPlatform
+  - ISOSpawn
   layers:
   - Default
   - TransparentFX
