@@ -17,7 +17,8 @@ public class ModeStartTrigger : MonoBehaviour
 
         //Starts the side on game
         if (SideOn) {
-
+            StartCoroutine(this.transform.parent.gameObject.GetComponent<SIDEManager>().StartSIDE());
+            transform.position = new Vector3 (transform.position.x, transform.position.y - 20f, transform.position.z);
 
         }
 

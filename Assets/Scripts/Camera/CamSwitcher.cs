@@ -33,7 +33,7 @@ public class CamSwitcher : MonoBehaviour
         ortho = Matrix4x4.Ortho(-orthographicSize * aspect, orthographicSize * aspect, -orthographicSize, orthographicSize, near, far);
         perspective = Matrix4x4.Perspective(fov, aspect, near, far);
         m_camera = GetComponent<Camera>();
-        m_camera.projectionMatrix = ortho;
+        m_camera.projectionMatrix = perspective;
         blender = (MatrixBlender)GetComponent(typeof(MatrixBlender));
 
     }

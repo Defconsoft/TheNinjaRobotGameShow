@@ -8,6 +8,10 @@ TagManager:
   - Env_Start
   - IsoPlatform
   - ISOSpawn
+  - IsoCollectible
+  - Enemy
+  - EnemySpawnpoints
+  - CloseDoor
   layers:
   - Default
   - TransparentFX

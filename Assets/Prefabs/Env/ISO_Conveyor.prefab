@@ -449,7 +449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4951579648801945594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 60.518997}
+  m_LocalPosition: {x: 0, y: 0, z: 50.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2184702952488969789}
@@ -910,11 +910,14 @@ MonoBehaviour:
   conBelt: {fileID: 1973826172098617434}
   Bombs:
   - {fileID: 8046333844331825637, guid: 4a4c89466a2830c47a69f3cef8b3a4f5, type: 3}
-  - {fileID: 8046333844331825637, guid: e5346b1f6fd62bf42898eea42cec4417, type: 3}
-  - {fileID: 8046333844331825637, guid: 5116501795f3d6c429048cf16225f5cb, type: 3}
+  - {fileID: 8046333844331825637, guid: 4a4c89466a2830c47a69f3cef8b3a4f5, type: 3}
+  - {fileID: 8046333844331825637, guid: 4a4c89466a2830c47a69f3cef8b3a4f5, type: 3}
+  - {fileID: 8046333844331825637, guid: 10e0c8679abfd154bbe1ba6d6b14ab48, type: 3}
   spawnpoints: []
-  spawnTime: 2
-  spawnPecentage: 0.6
+  CoinsToCollect: 10
+  CoinsCollected: 0
+  spawnTime: 0.25
+  spawnPecentage: 0.361
 --- !u!1001 &2138387578007832889
 PrefabInstance:
   m_ObjectHideFlags: 0

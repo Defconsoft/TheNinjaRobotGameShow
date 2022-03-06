@@ -24,7 +24,7 @@ public class ISOConveyorBelt : MonoBehaviour
 
     public void OnTriggerStay(Collider other) {
 
-            if (other.tag == "IsoPlatform"){
+            if (other.tag == "IsoPlatform" || other.tag == "IsoCollectible"){
                 Vector3 moveZ = new Vector3 (other.transform.position.x, other.transform.position.y, endPoint.position.z);
                 other.transform.position = Vector3.MoveTowards(other.transform.position, moveZ, speed * Time.deltaTime);
             }

@@ -725,7 +725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913244463}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 20.75, y: 2.66, z: 0.41}
+  m_LocalPosition: {x: 15.75, y: 4.66, z: 0.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1533114802}
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 20, y: 2, z: 0}
+  m_FollowOffset: {x: 15, y: 4, z: 0}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPrefab: {fileID: 1660230411878742135, guid: 42eb5b9aa452dae4c98b235d1953f09f, type: 3}
   endPrefab: {fileID: 1660230411878742135, guid: 9db4c52f5394618459ce21df2d834abb, type: 3}
-  roomPrefabs: {fileID: 8749572327268631029, guid: 640627bfc64470042b92dd84800c86e8, type: 3}
+  roomPrefabs: {fileID: 8760288824931703253, guid: d2c6ef053b6ea7c4eaf13e05c2cbd770, type: 3}
   numberOfRooms: 1
   spawnPoint: {fileID: 0}
   envContainer: {fileID: 216368563}
@@ -1622,7 +1622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104336708}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 20.75, y: 2.66, z: 0.41}
+  m_LocalPosition: {x: 15.75, y: 4.66, z: 0.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1063440031}

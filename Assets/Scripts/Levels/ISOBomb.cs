@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ISOBomb : MonoBehaviour
 {
-
+    public GameObject spawnOrigin;
 
     private void Update() {
         if (transform.position.y <= -4f) {
@@ -13,8 +13,17 @@ public class ISOBomb : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player") {
-            Destroy(this.gameObject);
+        this.gameObject.GetComponent<BoxCollider>().enabled = false;
+        if (this.tag == "IsoCollectible") {
+            if (other.tag == "Player") {
+                spawnOrigin.GetComponent<ISOConveyorManager>().CoinsCollected++;
+                Destroy(this.gameObject);
+            } 
+        } else if (this.tag == "IsoPlatform") {
+            if (other.tag == "Player") {
+                Destroy(this.gameObject);
+                //Damage the player
+            }
         }
     }
 }

@@ -25,8 +25,13 @@ public class ISOConveyorManager : MonoBehaviour
 
     [Header("GameStuff")]
     bool isActive;
+    bool isFinished;
+    public int CoinsToCollect;
+    public int CoinsCollected;
     public float spawnTime;
     private float spawnTimer;
+    private GameObject trashCan;
+    private ISOManager manager;
     [SerializeField, Range(0,1f)] private float spawnPecentage;
 
 
@@ -34,7 +39,9 @@ public class ISOConveyorManager : MonoBehaviour
         startPos = FallAway.transform.position;
         endPos = FallAway.transform.position - transform.up * moveDistance;
         conBelt = transform.Find("Platform").gameObject;
+        manager = GetComponent<ISOManager>();
         conBeltComp = conBelt.GetComponent<ISOConveyorBelt>();
+        trashCan = GameObject.Find("^TRASH");
         GetSpawnpoints();
         
     }
@@ -57,6 +64,7 @@ public class ISOConveyorManager : MonoBehaviour
         }
 
         if (perc >= 1.0) {
+            perc = 0;
             removeFallAway = false;
             Destroy(FallAway, 0.1f);
             isActive = true;
@@ -68,16 +76,27 @@ public class ISOConveyorManager : MonoBehaviour
             spawnTimer += Time.deltaTime;
             if (spawnTimer > spawnTime) {
                 spawnTimer = 0;
-                for (int i = 0; i < spawnpoints.Length; i++)
-                {
-                    float randomChance = Random.Range (0f, 1f);
-                    if (randomChance <= spawnPecentage){
-                        GameObject clone = Instantiate(Bombs[Random.Range (0, Bombs.Length)], spawnpoints[i].transform);
-                        clone.transform.parent = GameObject.Find("^TRASH").transform;
-                    }
+                float randomChance = Random.Range (0f, 1f);
+                if (randomChance <= spawnPecentage){
+                    GameObject clone = Instantiate(Bombs[Random.Range (0, Bombs.Length)], spawnpoints[Random.Range (0, spawnpoints.Length)].transform);
+                    clone.GetComponent<ISOBomb>().spawnOrigin = this.gameObject;
+                    clone.transform.parent = trashCan.transform;
                 }
-                spawnPecentage = spawnPecentage + 0.01f;
+                spawnPecentage = spawnPecentage + 0.001f;
             }
+        }
+
+        if (CoinsCollected == CoinsToCollect) {
+            if (!isFinished) {
+                isActive = false;
+                foreach (Transform child in trashCan.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                StartCoroutine(manager.FinishISO());
+                isFinished = true;
+            }
+            
         }
         
 

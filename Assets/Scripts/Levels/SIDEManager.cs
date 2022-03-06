@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ISOManager : MonoBehaviour
+public class SIDEManager : MonoBehaviour
 {
     [Header("GameStuff")]
     private GameObject player;
-    private ISOConveyorManager ISOconveyorManager;
     
     public int newCamState;
     public int newGameMode;
@@ -26,9 +25,10 @@ public class ISOManager : MonoBehaviour
     private MeshRenderer exitMeshRenderer;
     private MeshCollider exitMeshCollider;
 
+
     private void Start() {
         player = GameObject.Find("Player");
-        ISOconveyorManager = GetComponent<ISOConveyorManager>();
+
         enterMeshCollider = EnterDoor.GetComponent<MeshCollider>();
         enterMeshRenderer = EnterDoor.GetComponent<MeshRenderer>();
         exitMeshCollider = ExitDoor.GetComponent<MeshCollider>();
@@ -37,7 +37,8 @@ public class ISOManager : MonoBehaviour
 
     }
 
-    public IEnumerator StartISO() {
+
+    public IEnumerator StartSIDE() {
 
         //Close the entrance
         enterMeshCollider.enabled = true;
@@ -53,17 +54,19 @@ public class ISOManager : MonoBehaviour
         StartCoroutine(player.GetComponent<PlayerMovement>().CamTransition());
 
         yield return new WaitForSeconds(1.1f);
-        ISOconveyorManager.StartISOGame();
+
     }
 
 
-    public IEnumerator FinishISO() {
+    public IEnumerator FinishSIDE() {
+
+
         GameObject.Find("Player").GetComponent<GameManager>().GameMode = 0;
 
         //Change the camera
         mainCamera.GetComponent<CamSwitcher>().camState = 2;
 
-        mainCamera.GetComponent<CamSwitcher>().BlendToPerspective();
+        mainCamera.GetComponent<CamSwitcher>().BlendToOrtho();
 
         //Stop the player moving for the transition
         StartCoroutine(player.GetComponent<PlayerMovement>().CamTransition());
@@ -73,7 +76,7 @@ public class ISOManager : MonoBehaviour
         //Open the exit door
         exitMeshCollider.enabled = false;
         exitMeshRenderer.enabled = false;
-        
     }
+
 
 }
