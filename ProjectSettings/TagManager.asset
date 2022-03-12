@@ -12,6 +12,8 @@ TagManager:
   - Enemy
   - EnemySpawnpoints
   - CloseDoor
+  - SIDESpawn
+  - SIDEPlatform
   layers:
   - Default
   - TransparentFX
