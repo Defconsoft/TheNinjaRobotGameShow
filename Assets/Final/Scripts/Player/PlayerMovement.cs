@@ -39,14 +39,14 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
 
 
-    private CamSwitcher camSwitcher;
+    private GameManager gameManager;
 
 
     private void Awake() {
         controller = GetComponent<CharacterController>();
         playerControls = new PlayerControls();
         playerInput = GetComponent<PlayerInput>();
-        camSwitcher = Camera.main.GetComponent<CamSwitcher>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
 
@@ -62,19 +62,23 @@ public class PlayerMovement : MonoBehaviour
     {
 
         if (canMove){
-            if (camSwitcher.camState == 0){
-                HandleInput();
-                TopDownHandleMovement();
-                TopDownHandleRotation();
-            } else if (camSwitcher.camState == 1) {
-                HandleInput();
-                SideViewHandleMovement();
-            } else if (camSwitcher.camState == 2) {
+            if (gameManager.GameMode == 0 || gameManager.GameMode == 3){
                 HandleInput();
                 IsometricHandleMovement();
                 IsometricHandleRotation();
+
+            } else if (gameManager.GameMode == 1) {
+                HandleInput();
+                TopDownHandleMovement();
+                TopDownHandleRotation();
+
+            } else if (gameManager.GameMode == 2) {
+                HandleInput();
+                SideViewHandleMovement();
             }
         }
+
+        
        
     }
 

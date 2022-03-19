@@ -28,7 +28,7 @@
         }
      
         public Coroutine BlendToMatrix(Matrix4x4 targetMatrix, float duration, float ease, bool reverse) {
-            StopAllCoroutines();
+            //StopAllCoroutines();
             return StartCoroutine(LerpFromTo(m_camera.projectionMatrix, targetMatrix, duration, ease, reverse));
         }
     }

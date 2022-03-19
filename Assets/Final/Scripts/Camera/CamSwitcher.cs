@@ -7,13 +7,13 @@ using UnityEngine.InputSystem;
 
 public class CamSwitcher : MonoBehaviour
 {
-
+    public CinemachineVirtualCamera Traversal;
     public CinemachineVirtualCamera TopDown;
     public CinemachineVirtualCamera SideView;
     public CinemachineVirtualCamera Isometric;
 
 
-    public int camState = 2;
+    public int camState;
 
     private Matrix4x4 ortho,
                         perspective;
@@ -41,21 +41,31 @@ public class CamSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         switch (camState) {
-            case 0: //Top Down
+            case 0: //Traversal
+                Traversal.m_Priority = 10;
+                TopDown.m_Priority = 1;
+                SideView.m_Priority = 1;
+                Isometric.m_Priority = 1;
+
+            break;
+
+            case 1: // TopDown
+                Traversal.m_Priority = 1;
                 TopDown.m_Priority = 10;
                 SideView.m_Priority = 1;
                 Isometric.m_Priority = 1;
             break;
 
-            case 1: // Side View
+            case 2: // Side
+                Traversal.m_Priority = 1;
                 TopDown.m_Priority = 1;
                 SideView.m_Priority = 10;
                 Isometric.m_Priority = 1;
             break;
 
-            case 2: // Isometric
+            case 3: // Isomteric
+                Traversal.m_Priority = 1;
                 TopDown.m_Priority = 1;
                 SideView.m_Priority = 1;
                 Isometric.m_Priority = 10;
@@ -71,7 +81,7 @@ public class CamSwitcher : MonoBehaviour
     }
 
     public void BlendToOrtho(){
-        blender.BlendToMatrix(ortho, 1f, 8,true);
+        blender.BlendToMatrix(ortho, 1f, 8, true);
     }
 
 }
