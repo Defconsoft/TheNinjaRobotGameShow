@@ -9,10 +9,10 @@ public class EnemyController : MonoBehaviour
 
     private GameObject target;
     private NavMeshAgent agent;
-    private MeshRenderer meshRender;
+    public GameObject enemyModel;
     public float damageAmount;
     public GameObject attackEffect, deathEffect;
-    private TDShooterGenerator tdGenerator;
+    private TD_Shooter tdGenerator;
     bool alive = true;
     
     void Start()
@@ -20,8 +20,7 @@ public class EnemyController : MonoBehaviour
         //Grab the player as the target
         target = GameObject.Find("Player");  
         agent = GetComponent<NavMeshAgent>();
-        meshRender = GetComponent<MeshRenderer>();
-        tdGenerator = this.transform.parent.gameObject.transform.GetComponent<TDShooterGenerator>();
+        tdGenerator = this.transform.parent.gameObject.transform.GetComponent<TD_Shooter>();
     }
     
     
@@ -41,9 +40,9 @@ public class EnemyController : MonoBehaviour
     public IEnumerator Death() {
         alive = false;
         Destroy (agent);
-        Destroy (this.GetComponent<BoxCollider>());
+        Destroy (this.GetComponent<CapsuleCollider>());
         deathEffect.SetActive (true);
-        meshRender.enabled = false;
+        Destroy(enemyModel);
         tdGenerator.EnemyDied();
         yield return new WaitForSeconds(6f);
         Destroy(this.gameObject);
@@ -53,8 +52,8 @@ public class EnemyController : MonoBehaviour
     public IEnumerator Attack() {
         alive = false;
         Destroy (agent);
-        Destroy (this.GetComponent<BoxCollider>());
-        meshRender.enabled = false;
+        Destroy (this.GetComponent<CapsuleCollider>());
+        Destroy(enemyModel);
         attackEffect.SetActive (true);
         tdGenerator.EnemyDied();
         yield return new WaitForSeconds(6f);

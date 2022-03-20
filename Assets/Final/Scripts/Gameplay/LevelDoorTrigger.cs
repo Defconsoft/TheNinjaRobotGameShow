@@ -28,6 +28,7 @@ public class LevelDoorTrigger : MonoBehaviour
             if (close) {
                 endPos = door.transform.position - door.transform.right * moveDistance;
                 StartCoroutine(LerpPosition(endPos, lerpTime));
+
             }
 
             transform.position = new Vector3 (transform.position.x, transform.position.y - 20f, transform.position.z);

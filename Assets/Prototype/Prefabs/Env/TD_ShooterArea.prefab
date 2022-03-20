@@ -476,6 +476,9 @@ MonoBehaviour:
   size: {x: 27.1, y: 0.2, z: 12.5}
   PlayerDistance: 8
   spawnTransform: {fileID: 7719387122178850522}
+  enemiesSpawned: 0
+  enemiesKilled: 0
+  currentTotalEnemies: 0
   enemySpawnpoints: []
 --- !u!114 &3547454313664994127
 MonoBehaviour:

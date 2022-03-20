@@ -13,6 +13,16 @@ public class GameManager : MonoBehaviour
     private CamSwitcher camSwitcher;
 
 
+    [Header ("Shooter Variables")] 
+    public int TotalShooterEnemies;
+    public int MaxShooterEnemies;
+    public int EnemiesAddPerLevel;
+
+    [Header ("Conveyor Variables")] 
+    public int TotalCoins;
+    public int CoinsToAdd;
+
+
 
     private void Start() {
         camSwitcher = Camera.main.gameObject.GetComponent<CamSwitcher>();
@@ -31,6 +41,13 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void ShooterFinish(){
+        TotalShooterEnemies = TotalShooterEnemies + EnemiesAddPerLevel;
+    }
+
+    public void ConveyorFinish(){
+        TotalCoins = TotalCoins + CoinsToAdd;
+    }
 
 
 

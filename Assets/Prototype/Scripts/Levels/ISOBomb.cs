@@ -16,7 +16,7 @@ public class ISOBomb : MonoBehaviour
         this.gameObject.GetComponent<BoxCollider>().enabled = false;
         if (this.tag == "IsoCollectible") {
             if (other.tag == "Player") {
-                spawnOrigin.GetComponent<ISOConveyorManager>().CoinsCollected++;
+                spawnOrigin.GetComponent<ISO_Conveyor>().CoinsCollected++;
                 Destroy(this.gameObject);
             } 
         } else if (this.tag == "IsoPlatform") {

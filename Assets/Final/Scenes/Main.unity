@@ -1285,6 +1285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameMode: 0
+  TotalShooterEnemies: 50
+  MaxShooterEnemies: 5
+  EnemiesAddPerLevel: 5
+  TotalCoins: 10
+  CoinsToAdd: 2
 --- !u!1 &1513570954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,6 +2066,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameMode: 0
+  TotalShooterEnemies: 0
+  MaxShooterEnemies: 0
+  EnemiesAddPerLevel: 0
+  TotalCoins: 0
+  CoinsToAdd: 0
 --- !u!114 &2139852451
 MonoBehaviour:
   m_ObjectHideFlags: 0
