@@ -62,6 +62,7 @@ public class CamSwitcher : MonoBehaviour
                 TopDown.m_Priority = 1;
                 SideView.m_Priority = 10;
                 Isometric.m_Priority = 1;
+
             break;
 
             case 3: // Isomteric
@@ -69,6 +70,7 @@ public class CamSwitcher : MonoBehaviour
                 TopDown.m_Priority = 1;
                 SideView.m_Priority = 1;
                 Isometric.m_Priority = 10;
+
             break;
 
         }

@@ -79,7 +79,7 @@ public class ISOConveyorManager : MonoBehaviour
                 float randomChance = Random.Range (0f, 1f);
                 if (randomChance <= spawnPecentage){
                     GameObject clone = Instantiate(Bombs[Random.Range (0, Bombs.Length)], spawnpoints[Random.Range (0, spawnpoints.Length)].transform);
-                    clone.GetComponent<ISOBomb>().spawnOrigin = this.gameObject;
+                    clone.GetComponent<ISO_Bomb>().spawnOrigin = this.gameObject;
                     clone.transform.parent = trashCan.transform;
                 }
                 spawnPecentage = spawnPecentage + 0.001f;

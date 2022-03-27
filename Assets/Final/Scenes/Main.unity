@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.06
@@ -1290,6 +1290,8 @@ MonoBehaviour:
   EnemiesAddPerLevel: 5
   TotalCoins: 10
   CoinsToAdd: 2
+  TotalFireCoins: 10
+  FireCoinsToAdd: 2
 --- !u!1 &1513570954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2073,8 @@ MonoBehaviour:
   EnemiesAddPerLevel: 0
   TotalCoins: 0
   CoinsToAdd: 0
+  TotalFireCoins: 0
+  FireCoinsToAdd: 0
 --- !u!114 &2139852451
 MonoBehaviour:
   m_ObjectHideFlags: 0

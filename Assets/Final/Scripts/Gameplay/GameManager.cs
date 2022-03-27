@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     public int TotalCoins;
     public int CoinsToAdd;
 
-
+    [Header ("FireCollect Variables")] 
+    public int TotalFireCoins;
+    public int FireCoinsToAdd;
 
     private void Start() {
         camSwitcher = Camera.main.gameObject.GetComponent<CamSwitcher>();
@@ -47,6 +49,10 @@ public class GameManager : MonoBehaviour
 
     public void ConveyorFinish(){
         TotalCoins = TotalCoins + CoinsToAdd;
+    }
+
+    public void FireCollectFinish(){
+        TotalFireCoins = TotalFireCoins + FireCoinsToAdd;
     }
 
 
