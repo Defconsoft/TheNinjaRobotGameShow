@@ -11,7 +11,10 @@ public class CamSwitcher : MonoBehaviour
     public CinemachineVirtualCamera TopDown;
     public CinemachineVirtualCamera SideView;
     public CinemachineVirtualCamera Isometric;
+    public CinemachineVirtualCamera UICam;
+    public CinemachineVirtualCamera TitleCam;
 
+    public CinemachineBrain mainBrain;
 
     public int camState;
 
@@ -29,6 +32,7 @@ public class CamSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainBrain = GetComponent<CinemachineBrain>();
         aspect = (float)Screen.width / (float)Screen.height;
         ortho = Matrix4x4.Ortho(-orthographicSize * aspect, orthographicSize * aspect, -orthographicSize, orthographicSize, near, far);
         perspective = Matrix4x4.Perspective(fov, aspect, near, far);
@@ -43,36 +47,70 @@ public class CamSwitcher : MonoBehaviour
     {
         switch (camState) {
             case 0: //Traversal
+                mainBrain.m_DefaultBlend.m_Time = 1f;
                 Traversal.m_Priority = 10;
                 TopDown.m_Priority = 1;
                 SideView.m_Priority = 1;
                 Isometric.m_Priority = 1;
+                UICam.m_Priority = 1;
+                TitleCam.m_Priority = 1;
 
             break;
 
             case 1: // TopDown
+                mainBrain.m_DefaultBlend.m_Time = 1f;
                 Traversal.m_Priority = 1;
                 TopDown.m_Priority = 10;
                 SideView.m_Priority = 1;
                 Isometric.m_Priority = 1;
+                UICam.m_Priority = 1;
+                TitleCam.m_Priority = 1;
+
             break;
 
             case 2: // Side
+                mainBrain.m_DefaultBlend.m_Time = 1f;
                 Traversal.m_Priority = 1;
                 TopDown.m_Priority = 1;
                 SideView.m_Priority = 10;
                 Isometric.m_Priority = 1;
+                UICam.m_Priority = 1;
+                TitleCam.m_Priority = 1;
 
             break;
 
             case 3: // Isomteric
+                mainBrain.m_DefaultBlend.m_Time = 1f;
                 Traversal.m_Priority = 1;
                 TopDown.m_Priority = 1;
                 SideView.m_Priority = 1;
                 Isometric.m_Priority = 10;
+                UICam.m_Priority = 1;
+                TitleCam.m_Priority = 1;
 
             break;
 
+            case 4: // UI
+                mainBrain.m_DefaultBlend.m_Time = 2f;
+                Traversal.m_Priority = 1;
+                TopDown.m_Priority = 1;
+                SideView.m_Priority = 1;
+                Isometric.m_Priority = 1;
+                UICam.m_Priority = 10;
+                TitleCam.m_Priority = 1;
+
+            break;
+
+            case 5: //TitleCam
+                mainBrain.m_DefaultBlend.m_Time = 2f;
+                Traversal.m_Priority = 1;
+                TopDown.m_Priority = 1;
+                SideView.m_Priority = 1;
+                Isometric.m_Priority = 1;
+                UICam.m_Priority = 1;
+                TitleCam.m_Priority = 10;
+
+            break;
         }
 
     }

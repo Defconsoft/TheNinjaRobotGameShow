@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     
     [Header ("Game States")] 
-    public int GameMode; //0 - Traversal, 1 - TopDownShooter, 2 - Side On, 3 - Isometric
+    public int GameMode; //0 - Traversal, 1 - TopDownShooter, 2 - Side On, 3 - Isometric, 4 - UI, 5 - Title
     private GameObject mainCamera;
     private CamSwitcher camSwitcher;
 
@@ -26,13 +26,20 @@ public class GameManager : MonoBehaviour
     public int TotalFireCoins;
     public int FireCoinsToAdd;
 
+    [Header ("Other Variables")]
+    private UIManager uiManager;
+
+
     private void Start() {
         camSwitcher = Camera.main.gameObject.GetComponent<CamSwitcher>();
+        camSwitcher.camState = 5;
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        //Turn on the title screen
+        uiManager.TitleScreen.enabled = true;
+        StartCoroutine(StartMainGame());
     }
 
     private void Update() {
-
-        //camSwitcher.camState = GameMode;
 
         //player death from falling
         if (transform.position.y <= -4f) {
@@ -53,6 +60,13 @@ public class GameManager : MonoBehaviour
 
     public void FireCollectFinish(){
         TotalFireCoins = TotalFireCoins + FireCoinsToAdd;
+    }
+
+
+    IEnumerator StartMainGame() {
+        Debug.Log ("Started");
+        yield return new WaitForSeconds (2f);
+        StartCoroutine(uiManager.Countdown());
     }
 
 
