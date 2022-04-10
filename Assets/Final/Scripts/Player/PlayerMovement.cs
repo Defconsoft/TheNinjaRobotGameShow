@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         playerControls = new PlayerControls();
         playerInput = GetComponent<PlayerInput>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        canMove = false;
     }
 
 

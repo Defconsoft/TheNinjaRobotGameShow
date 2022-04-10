@@ -13,6 +13,7 @@ public class LevelGen : MonoBehaviour
     public GameObject levelEnd;
     public Transform spawnPoint;
     public GameObject envContainer;
+    public int NextRoom;
     public int roomNumber = 0;
 
 
@@ -40,7 +41,8 @@ public class LevelGen : MonoBehaviour
         SetNewSpawnPoint(nextContainer.transform);
 
         //then spawn a level room
-        GameObject levelRoom = Instantiate(roomPrefabs[Random.Range(0, roomPrefabs.Length)], spawnPoint);
+        NextRoom = Random.Range(0, roomPrefabs.Length);
+        GameObject levelRoom = Instantiate(roomPrefabs[NextRoom], spawnPoint);
         //move its parent
         levelRoom.transform.parent = envContainer.transform;
         //move the spawnpoint
