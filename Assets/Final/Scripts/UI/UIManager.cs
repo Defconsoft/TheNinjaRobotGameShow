@@ -22,12 +22,21 @@ public class UIManager : MonoBehaviour
     public float Duration = 2f;
     public GameObject TitleLight;
 
+    [Header("FirstSceneUI")] 
+    public Canvas firstScene; 
+    public Button firstStart;
+
     [Header("EndLevelScene")]
     public Material RobotUV;
     public Sprite[] levelSprites;
     public Image nextLevelImage;
     public Text scoreText;
 
+    [Header("InGameScreen")]
+    public Canvas inGame;
+    public GameObject InGamePanel;
+    public int downPosition;
+    public int upPosition;
 
 
 
@@ -117,15 +126,22 @@ public class UIManager : MonoBehaviour
         nextLevelImage.sprite = levelSprites[levelGen.NextRoom];
     }
 
-    public void StartNextLevel(){
+    public void StartFirstLevel(){
         camSwitcher.camState = 0;
         gameManager.GameMode = 0;
         playerMovement.canMove = true;
+        firstStart.interactable = false;
+        InGameMoveIn();
         TitleLight.SetActive(false);
     }
 
+    public void InGameMoveIn() {
+        InGamePanel.transform.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (1000, 1042), 1f);
+    }
 
-
+    public void InGameMoveOut() {
+        InGamePanel.transform.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (1000, 1139), 1f);
+    }
 
 
 }

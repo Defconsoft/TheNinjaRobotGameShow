@@ -5,6 +5,15 @@ using UnityEngine;
 public class ISO_Bomb : MonoBehaviour
 {
     public GameObject spawnOrigin;
+    private GameObject player;
+    private GameManager gameManager;
+    public float damageAmount;
+    public int scoreAmount;
+
+    private void Start() {
+        player = GameObject.Find("Player");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
     private void Update() {
         if (transform.position.y <= -4f) {
@@ -17,12 +26,13 @@ public class ISO_Bomb : MonoBehaviour
         if (this.tag == "IsoCollectible") {
             if (other.tag == "Player") {
                 spawnOrigin.GetComponent<ISO_Conveyor>().CoinsCollected++;
+                gameManager.AddScore(scoreAmount);
                 Destroy(this.gameObject);
             } 
         } else if (this.tag == "IsoPlatform") {
             if (other.tag == "Player") {
                 Destroy(this.gameObject);
-                //Damage the player
+                player.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
             }
         }
     }

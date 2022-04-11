@@ -128,6 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b70c03ed14942849a013382dd521c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnOrigin: {fileID: 0}
+  player: {fileID: 0}
+  gameManager: {fileID: 0}
+  damageAmount: 0.1
+  scoreAmount: 100
 --- !u!65 &6171881926560073044
 BoxCollider:
   m_ObjectHideFlags: 0

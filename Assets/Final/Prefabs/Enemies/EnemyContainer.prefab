@@ -51,7 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyModel: {fileID: 58474673335860153}
-  damageAmount: 1
+  damageAmount: 0.1
+  scoreAmount: 100
   attackEffect: {fileID: 232000010989251374}
   deathEffect: {fileID: 4613958197425194187}
 --- !u!195 &2884466843870503419
