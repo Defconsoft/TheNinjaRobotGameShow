@@ -1037,7 +1037,7 @@ GameObject:
   - component: {fileID: 1512724522620543055}
   m_Layer: 0
   m_Name: TopDownShooter
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

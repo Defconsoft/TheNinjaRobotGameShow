@@ -15,6 +15,7 @@ TagManager:
   - SIDESpawn
   - SIDEPlatform
   - SideCollectible
+  - Level
   layers:
   - Default
   - TransparentFX

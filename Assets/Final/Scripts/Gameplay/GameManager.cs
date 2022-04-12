@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     
     [Header ("Game States")] 
-    public int GameMode; //0 - Traversal, 1 - TopDownShooter, 2 - Side On, 3 - Isometric, 4 - UI, 5 - Title
+    public int GameMode; //0 - Traversal, 1 - TopDownShooter, 2 - Side On, 3 - Isometric, 4 - UI, 5 - Title, 6 - Death
     private GameObject mainCamera;
     private CamSwitcher camSwitcher;
     private GameObject player;
@@ -44,15 +44,12 @@ public class GameManager : MonoBehaviour
         //Turn on the title screen
         uiManager.TitleScreen.enabled = true;
         StartCoroutine(StartMainGame());
+        DOTween.SetTweensCapacity(1250,50);
     }
 
     private void Update() {
 
-        //player death from falling
-        if (transform.position.y <= -4f) {
-            Scene scene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(scene.name);
-        }
+
 
     }
 
@@ -75,17 +72,17 @@ public class GameManager : MonoBehaviour
         StartCoroutine(uiManager.Countdown());
     }
 
-    public void LightsToPlayer(){
-
-        PlayerLight.GetComponent<Rigidbody>().DOLookAt(player.transform.position, 2f, AxisConstraint.None, Vector3.up); 
-
-    }
 
     public void AddScore(int scoreAmount){
         Score = Score + scoreAmount;
     }
 
-
+    public IEnumerator HandleDeath(){
+        yield return new WaitForSeconds(2f);
+        camSwitcher.camState = 6;
+        GameMode = 6;
+        yield return new WaitForSeconds(2f);
+    }
 
 
 }

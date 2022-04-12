@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 8276950458166397516}
   m_Layer: 0
   m_Name: SidePlatformMover
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

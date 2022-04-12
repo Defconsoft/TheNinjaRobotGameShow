@@ -52,7 +52,6 @@ public class ISO_Conveyor : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log ("FIRE");
         if (other.tag == "Player"){
             Destroy (this.GetComponent<BoxCollider>());
             StartISOGame();

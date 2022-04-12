@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public Sprite[] levelSprites;
     public Image nextLevelImage;
     public Text scoreText;
+    public GameObject currentEnd;
 
     [Header("InGameScreen")]
     public Canvas inGame;
@@ -118,7 +119,6 @@ public class UIManager : MonoBehaviour
     public void RandomiseThePlayer() {
         float offset;
         offset = Random.Range (0,32) * 0.03f;
-        Debug.Log (offset);
         RobotUV.mainTextureOffset =  new Vector2(offset, 0);
     }
 
@@ -142,6 +142,30 @@ public class UIManager : MonoBehaviour
     public void InGameMoveOut() {
         InGamePanel.transform.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (1000, 1139), 1f);
     }
+
+    public void EndLevelBegin(Transform movePoint, GameObject currentScene){
+        camSwitcher.camState = 4;
+        gameManager.GameMode = 4;
+        InGameMoveOut();
+        currentEnd = currentScene;
+        StartCoroutine (EndLevelWait());
+        player.transform.DOMove(movePoint.position, 2);
+    }
+
+    IEnumerator EndLevelWait(){
+        yield return new WaitForSeconds(3f);
+        currentEnd.GetComponent<EndSceneUIManager>().SetTheNextLevelGraphic();
+    }
+
+    public void StartNextLevel(){
+        camSwitcher.camState = 0;
+        gameManager.GameMode = 0;
+        playerMovement.canMove = true;
+        InGameMoveIn();
+        currentEnd.GetComponent<EndSceneUIManager>().StartBtn.interactable = false;
+    }
+
+
 
 
 }

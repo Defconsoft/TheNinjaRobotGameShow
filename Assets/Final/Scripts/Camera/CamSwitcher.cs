@@ -13,6 +13,7 @@ public class CamSwitcher : MonoBehaviour
     public CinemachineVirtualCamera Isometric;
     public CinemachineVirtualCamera UICam;
     public CinemachineVirtualCamera TitleCam;
+    public CinemachineVirtualCamera DeathCam;
 
     public CinemachineBrain mainBrain;
 
@@ -54,6 +55,7 @@ public class CamSwitcher : MonoBehaviour
                 Isometric.m_Priority = 1;
                 UICam.m_Priority = 1;
                 TitleCam.m_Priority = 1;
+                DeathCam.m_Priority = 1;
 
             break;
 
@@ -65,7 +67,7 @@ public class CamSwitcher : MonoBehaviour
                 Isometric.m_Priority = 1;
                 UICam.m_Priority = 1;
                 TitleCam.m_Priority = 1;
-
+                DeathCam.m_Priority = 1;
             break;
 
             case 2: // Side
@@ -87,7 +89,7 @@ public class CamSwitcher : MonoBehaviour
                 Isometric.m_Priority = 10;
                 UICam.m_Priority = 1;
                 TitleCam.m_Priority = 1;
-
+                DeathCam.m_Priority = 1;
             break;
 
             case 4: // UI
@@ -98,7 +100,7 @@ public class CamSwitcher : MonoBehaviour
                 Isometric.m_Priority = 1;
                 UICam.m_Priority = 10;
                 TitleCam.m_Priority = 1;
-
+                DeathCam.m_Priority = 1;
             break;
 
             case 5: //TitleCam
@@ -109,7 +111,18 @@ public class CamSwitcher : MonoBehaviour
                 Isometric.m_Priority = 1;
                 UICam.m_Priority = 1;
                 TitleCam.m_Priority = 10;
+                DeathCam.m_Priority = 1;
+            break;
 
+            case 6: //DeathCam
+                mainBrain.m_DefaultBlend.m_Time = 1f;
+                Traversal.m_Priority = 1;
+                TopDown.m_Priority = 1;
+                SideView.m_Priority = 1;
+                Isometric.m_Priority = 1;
+                UICam.m_Priority = 1;
+                TitleCam.m_Priority = 1;
+                DeathCam.m_Priority = 10;
             break;
         }
 

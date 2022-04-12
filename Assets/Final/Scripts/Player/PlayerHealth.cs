@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,9 +13,15 @@ public class PlayerHealth : MonoBehaviour
     public CharacterController playerController;
     public GameObject playerModel;
     private GameObject player;
+    private GameManager gameManager;
+    private UIManager uIManager;
+    private CamSwitcher camSwitcher;
 
     private void Start() {
         player = GameObject.Find("Player");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        camSwitcher = Camera.main.gameObject.GetComponent<CamSwitcher>();
     }
 
     // Update is called once per frame
@@ -24,6 +31,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (Health <= 0) {
             Death();
+        }
+
+        //player death from falling
+        if (transform.position.y <= -6f) {
+            Health = 0;
         }
 
     }
@@ -36,12 +48,15 @@ public class PlayerHealth : MonoBehaviour
 
 
     public void Death(){
+        camSwitcher.BlendToPerspective();
+        uIManager.InGameMoveOut();
+        player.transform.DORotate(new Vector3 (0,0,0), 1f);
         player.GetComponent<PlayerMovement>().canMove = false;
         player.GetComponent<PlayerShooting>().canShoot = false;
         playerController.enabled = false;
         playerModel.SetActive(false);
         DeathContainer.SetActive(true);
-
+        StartCoroutine(gameManager.HandleDeath());
     }
 
 
