@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
     private GameManager gameManager;
     private UIManager uIManager;
     private CamSwitcher camSwitcher;
+    public GameObject DeathCanvas;
+    public bool Dead;
 
     private void Start() {
         player = GameObject.Find("Player");
@@ -30,7 +32,10 @@ public class PlayerHealth : MonoBehaviour
         HealthFill.fillAmount = Health;
 
         if (Health <= 0) {
-            Death();
+            if (!Dead){
+                Dead = true;
+                Death();
+            }
         }
 
         //player death from falling
@@ -57,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
         playerModel.SetActive(false);
         DeathContainer.SetActive(true);
         StartCoroutine(gameManager.HandleDeath());
+        GameObject clone = Instantiate (DeathCanvas,transform);
     }
 
 

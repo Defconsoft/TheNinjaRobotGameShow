@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class TD_Shooter : MonoBehaviour
 {
@@ -13,6 +15,11 @@ public class TD_Shooter : MonoBehaviour
     public bool inProgress;
     private GameManager gameManager;
     public GameObject EndTrigger;
+    public GameObject CanvasPanel;
+    public Text InGameAssist;
+    private GameObject trashcan;
+    public GameObject arrows;
+    private UIManager uIManager;
 
     [Header("SpawnerStuff")]
     public Vector3 centre;
@@ -30,26 +37,29 @@ public class TD_Shooter : MonoBehaviour
     public int enemiesKilled;
     public int currentTotalEnemies;
 
+    [Header("UIStuff")]
+    public Image WinBG;
+    public Image You, Win;
+
 
     private void Start() {
         player = GameObject.Find("Player");
         playerShooting = player.GetComponent<PlayerShooting>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        trashcan = GameObject.Find("^TRASH");
+        uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.tag == "Player"){
-            Destroy (this.GetComponent<SphereCollider>());
-            StartTDGame();
-        }
-    }
 
     public void StartTDGame(){
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -515f), 1.5f);
         numberEnemies = gameManager.TotalShooterEnemies;
         MaxEnemies = gameManager.MaxShooterEnemies;
         inProgress = true;
         playerShooting.canShoot = true;
+        uIManager.InGameMoveIn();
         StartCoroutine(StartWave());
+
     }
 
 
@@ -66,6 +76,8 @@ public class TD_Shooter : MonoBehaviour
     }
 
     private void Update() {
+        
+        InGameAssist.text = (numberEnemies - enemiesKilled).ToString() + " ENEMIES TO KILL";
 
         if (inProgress){
             //spawn the enemies
@@ -82,7 +94,8 @@ public class TD_Shooter : MonoBehaviour
                         }
                     }
                     GameObject clone = Instantiate (enemyTypes, spawnTransform);
-                    clone.transform.parent = this.transform;
+                    clone.GetComponent<EnemyController>().spawnOrigin = this.gameObject;
+                    clone.transform.parent = trashcan.transform;
 
                     spawnable = false;
                 }
@@ -96,9 +109,49 @@ public class TD_Shooter : MonoBehaviour
                 playerShooting.canShoot = false;
                 EndTrigger.SetActive (true);
                 gameManager.ShooterFinish();
+                player.GetComponent<PlayerMovement>().canMove = false;
                 inProgress = false;
+                StartCoroutine(EndTDGame());
+            }
+
+            if (player.GetComponent<PlayerHealth>().Dead == true && inProgress == true){
+                inProgress = false;
+                CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
+                foreach (Transform child in trashcan.transform) {
+                     Destroy(child.gameObject);
+                }
             }
         }
+    }
+
+    private IEnumerator EndTDGame(){
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
+        uIManager.InGameMoveOut();
+        foreach (Transform child in trashcan.transform) {
+            Destroy(child.gameObject);
+        }
+        
+        var sequence = DOTween.Sequence();
+        sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
+        sequence.AppendInterval(3f);
+        sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (0, 0, 0), 0.5f));
+
+        var sequence1 = DOTween.Sequence();
+
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 104f), 1.5f).SetEase(Ease.OutQuart));
+        sequence1.AppendInterval(1f);
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 694f), 1.5f).SetEase(Ease.InQuart));
+
+        var sequence2 = DOTween.Sequence();
+
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -122f), 1.5f).SetEase(Ease.OutQuart));
+        sequence2.AppendInterval(1f);
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -694f), 1.5f).SetEase(Ease.InQuart));
+
+        yield return new WaitForSeconds(5f);
+        player.GetComponent<PlayerMovement>().canMove = true;
+        arrows.SetActive (true);
+
     }
 
     void OnDrawGizmosSelected() {

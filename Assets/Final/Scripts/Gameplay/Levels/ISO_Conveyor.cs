@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class ISO_Conveyor : MonoBehaviour
 {
@@ -38,10 +40,20 @@ public class ISO_Conveyor : MonoBehaviour
     private float spawnTimer;
     private GameObject trashCan;
     private GameManager gameManager;
+    private GameObject player;
     [SerializeField, Range(0,1f)] private float spawnPecentage;
+    public GameObject CanvasPanel;
+    public Text InGameAssist;
+    public GameObject arrows;
+    private UIManager uIManager;
+
+    [Header("UIStuff")]
+    public Image WinBG;
+    public Image You, Win;
 
 
     private void Start() {
+        player = GameObject.Find("Player");
         startPos = FallAway.transform.position;
         endPos = FallAway.transform.position - FallAway.transform.up * moveDistance;
         startPosEnd = EndAway.transform.position;
@@ -49,17 +61,12 @@ public class ISO_Conveyor : MonoBehaviour
         conBeltComp = conBelt.GetComponent<ISO_ConveyorBelt>();
         trashCan = GameObject.Find("^TRASH");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
-
-    private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player"){
-            Destroy (this.GetComponent<BoxCollider>());
-            StartISOGame();
-        }
-    }
-
 
     public void StartISOGame() {
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -515f), 1.5f);
+        uIManager.InGameMoveIn();
         CoinsToCollect = gameManager.TotalCoins;
         removeFallAway = true;
         conBeltComp.active = true;
@@ -67,6 +74,8 @@ public class ISO_Conveyor : MonoBehaviour
 
 
     public void Update() {
+
+        InGameAssist.text = (CoinsToCollect - CoinsCollected).ToString() + " COINS TO COLLECT";
 
         if (removeFallAway) {
             RemoveFallAway();
@@ -106,10 +115,8 @@ public class ISO_Conveyor : MonoBehaviour
             if (CoinsCollected == CoinsToCollect) {
                     if (!isFinished) {
                     isActive = false;
-                    foreach (Transform child in trashCan.transform)
-                    {
-                        Destroy(child.gameObject);
-                    }
+                    player.GetComponent<PlayerMovement>().canMove = false;
+                    StartCoroutine(EndTDGame());
                     isFinished = true;
                     currentLerpTime = 0;
                     removeEndAway = true;
@@ -120,10 +127,42 @@ public class ISO_Conveyor : MonoBehaviour
 
         }
 
+        if (player.GetComponent<PlayerHealth>().Dead == true && isActive == true){
+        isActive = false;
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
+        }
+    }
 
+    private IEnumerator EndTDGame(){
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
+        uIManager.InGameMoveOut();
+        foreach (Transform child in trashCan.transform) {
+            Destroy(child.gameObject);
+        }
         
+        var sequence = DOTween.Sequence();
+        sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
+        sequence.AppendInterval(3f);
+        sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (0, 0, 0), 0.5f));
+
+        var sequence1 = DOTween.Sequence();
+
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 104f), 1.5f).SetEase(Ease.OutQuart));
+        sequence1.AppendInterval(1f);
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 694f), 1.5f).SetEase(Ease.InQuart));
+
+        var sequence2 = DOTween.Sequence();
+
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -122f), 1.5f).SetEase(Ease.OutQuart));
+        sequence2.AppendInterval(1f);
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -694f), 1.5f).SetEase(Ease.InQuart));
+
+        yield return new WaitForSeconds(5f);
+        player.GetComponent<PlayerMovement>().canMove = true;
+        arrows.SetActive (true);
 
     }
+
     
     void RemoveFallAway(){
         //increment timer once per frame

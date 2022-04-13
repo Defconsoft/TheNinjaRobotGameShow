@@ -131,7 +131,7 @@ public class UIManager : MonoBehaviour
         gameManager.GameMode = 0;
         playerMovement.canMove = true;
         firstStart.interactable = false;
-        InGameMoveIn();
+        //InGameMoveIn();
         TitleLight.SetActive(false);
     }
 
@@ -146,7 +146,7 @@ public class UIManager : MonoBehaviour
     public void EndLevelBegin(Transform movePoint, GameObject currentScene){
         camSwitcher.camState = 4;
         gameManager.GameMode = 4;
-        InGameMoveOut();
+        //InGameMoveOut();
         currentEnd = currentScene;
         StartCoroutine (EndLevelWait());
         player.transform.DOMove(movePoint.position, 2);

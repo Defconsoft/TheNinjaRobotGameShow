@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public float damageAmount;
     public int scoreAmount;
     public GameObject attackEffect, deathEffect;
+    public GameObject spawnOrigin;
     private TD_Shooter tdGenerator;
     bool alive = true;
 
@@ -26,7 +27,17 @@ public class EnemyController : MonoBehaviour
         target = GameObject.Find("Player");  
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         agent = GetComponent<NavMeshAgent>();
-        tdGenerator = this.transform.parent.gameObject.transform.GetComponent<TD_Shooter>();
+        tdGenerator = spawnOrigin.transform.GetComponent<TD_Shooter>();
+        RandomiseTheEnemy();
+    }
+
+    public void RandomiseTheEnemy() {
+        float offset;
+        offset = Random.Range (0,32) * 0.03f;
+        foreach (Transform child in enemyModel.transform)
+        {
+            child.GetComponent<MeshRenderer>().material.mainTextureOffset =  new Vector2(offset, 0);
+        }
     }
     
     

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class SIDE_FireCollect : MonoBehaviour
 {
@@ -13,9 +15,15 @@ public class SIDE_FireCollect : MonoBehaviour
     public int coinsToCollect;
     bool FireCollectActive;
     public GameObject EndTrigger;
+    public GameObject arrows;
+    private UIManager uIManager;
+    public GameObject CanvasPanel;
+    public Text InGameAssist;
+    private GameObject trashCan;
 
-
-
+    [Header("UIStuff")]
+    public Image WinBG;
+    public Image You, Win;
 
     [Header("SpawnerStuff")]
     public Vector3 centre;
@@ -30,6 +38,9 @@ public class SIDE_FireCollect : MonoBehaviour
     public Transform ventPosition;
     public float FireTimer = 2.0f;
     float timer;
+    private List<Coroutine> routines = new List<Coroutine>(); 
+
+
 
 
     // Start is called before the first frame update
@@ -37,17 +48,14 @@ public class SIDE_FireCollect : MonoBehaviour
     {
         player = GameObject.Find("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        trashCan = GameObject.Find("^TRASH");
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player"){
-            Destroy (this.GetComponent<BoxCollider>());
-            StartSIDEGame();
-        }
-    }
-
-    void StartSIDEGame(){
+    public void StartSIDEGame(){
         //Put the player in the correct position
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -515f), 1.5f);
+        uIManager.InGameMoveIn();
         coinsToCollect = gameManager.TotalFireCoins;
         FireCollectActive = true;
         SpawnNextCollect();
@@ -57,14 +65,25 @@ public class SIDE_FireCollect : MonoBehaviour
     void Update()
     {
 
-        
+        InGameAssist.text = (coinsToCollect - coinsCollected).ToString() + " COINS TO COLLECT";
 
         if (FireCollectActive){
             timer += Time.deltaTime;
             if (coinsCollected == coinsToCollect) {
                 FireCollectActive = false;
+                player.GetComponent<PlayerMovement>().canMove = false;
+                StartCoroutine(EndSIDEGame());
+                foreach (Transform child in trashCan.transform) {
+                    Destroy(child.gameObject);
+                    //child.transform.position = new Vector3(-300, child.transform.position.y, child.transform.position.z);
+                }
+                gameManager.FireCollectFinish();
                 EndTrigger.SetActive (true);
             }
+        }
+        if (player.GetComponent<PlayerHealth>().Dead == true && FireCollectActive == true){
+            FireCollectActive = false;
+            CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
         }
 
         if (timer >= FireTimer){
@@ -76,6 +95,33 @@ public class SIDE_FireCollect : MonoBehaviour
 
 
 
+
+    }
+
+    private IEnumerator EndSIDEGame(){
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
+        uIManager.InGameMoveOut();
+        
+        var sequence = DOTween.Sequence();
+        sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
+        sequence.AppendInterval(3f);
+        sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (0, 0, 0), 0.5f));
+
+        var sequence1 = DOTween.Sequence();
+
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 104f), 1.5f).SetEase(Ease.OutQuart));
+        sequence1.AppendInterval(1f);
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 694f), 1.5f).SetEase(Ease.InQuart));
+
+        var sequence2 = DOTween.Sequence();
+
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -122f), 1.5f).SetEase(Ease.OutQuart));
+        sequence2.AppendInterval(1f);
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -694f), 1.5f).SetEase(Ease.InQuart));
+
+        yield return new WaitForSeconds(5f);
+        player.GetComponent<PlayerMovement>().canMove = true;
+        arrows.SetActive (true);
 
     }
 
@@ -96,10 +142,10 @@ public class SIDE_FireCollect : MonoBehaviour
     IEnumerator SpawnFlames(){
         Transform spawnPoint = ventPosition;
         GameObject preWarn = Instantiate(preWarnParticle, spawnPoint);
-
+        preWarn.transform.parent = trashCan.transform ;
         yield return new WaitForSeconds (2f);
         GameObject Fire = Instantiate(flameThrowParticle, spawnPoint);
-
+        Fire.transform.parent = trashCan.transform ;
         yield return new WaitForSeconds (4f);
         Destroy (preWarn);
         Destroy (Fire);
