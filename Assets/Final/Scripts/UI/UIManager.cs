@@ -39,7 +39,11 @@ public class UIManager : MonoBehaviour
     public int downPosition;
     public int upPosition;
 
-
+    [Header("InGameScreen")]
+    public Canvas quitScreen;
+    public GameObject quitPanel;
+    public GameObject fadeObject;
+    public GameObject Quitbtn;
 
     // Start is called before the first frame update
     void Start()
@@ -163,6 +167,30 @@ public class UIManager : MonoBehaviour
         playerMovement.canMove = true;
         InGameMoveIn();
         currentEnd.GetComponent<EndSceneUIManager>().StartBtn.interactable = false;
+    }
+
+    public void QuitBtn(){
+        Quitbtn.SetActive(false);
+        fadeObject.SetActive (true);
+        playerMovement.canMove = false;
+        quitPanel.transform.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 0), 1f).OnComplete(ChangeTime);
+    }
+
+    void ChangeTime(){
+        Debug.Log("here");
+        Time.timeScale = 0;   
+    }
+
+    public void QuitYes(){
+        Application.Quit();
+    }
+
+    public void QuitNo(){
+        Time.timeScale = 1;
+        playerMovement.canMove = true;
+        Quitbtn.SetActive(true);
+        fadeObject.SetActive (false);
+        quitPanel.transform.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (-1379, 0), 1f);
     }
 
 
