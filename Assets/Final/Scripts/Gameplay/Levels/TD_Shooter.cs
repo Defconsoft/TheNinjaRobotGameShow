@@ -130,6 +130,8 @@ public class TD_Shooter : MonoBehaviour
         foreach (Transform child in trashcan.transform) {
             Destroy(child.gameObject);
         }
+
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().YouWin();
         
         var sequence = DOTween.Sequence();
         sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));

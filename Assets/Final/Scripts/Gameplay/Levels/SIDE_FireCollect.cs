@@ -102,6 +102,8 @@ public class SIDE_FireCollect : MonoBehaviour
         CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
         uIManager.InGameMoveOut();
         
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().YouWin();
+
         var sequence = DOTween.Sequence();
         sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
         sequence.AppendInterval(3f);

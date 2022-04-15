@@ -195,7 +195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.9422, y: 1.0084839}
+  m_AnchoredPosition: {x: 9.942139, y: 1.0085449}
   m_SizeDelta: {x: 90.9659, y: 105.0723}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &80326940
@@ -2897,6 +2897,136 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068562415}
   m_CullTransparentMesh: 1
+--- !u!1 &1073495489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073495490}
+  - component: {fileID: 1073495491}
+  - component: {fileID: 1073495492}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073495490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073495489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2098334068}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073495491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073495489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb077c81a03a3f47bf3c9342cd59261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundContainer: {fileID: 2098334068}
+  bombHit:
+  - {fileID: 8300000, guid: d010a84ee9c7b9f4981b6a464b2e840b, type: 3}
+  - {fileID: 8300000, guid: 69ee215de57855a4e95f1d8fbcd56960, type: 3}
+  - {fileID: 8300000, guid: 926a08a4c106cc541a59668c97214cbe, type: 3}
+  - {fileID: 8300000, guid: 2afa8b175b8d7c5419630d8293d5a522, type: 3}
+  - {fileID: 8300000, guid: 436b73c1a63ee564ab9e975943df066c, type: 3}
+  coinCollect:
+  - {fileID: 8300000, guid: 6b7dae8cfedca7949a9274c86c931259, type: 3}
+  - {fileID: 8300000, guid: 07d15de968357d749b940a4629fcdd8a, type: 3}
+  - {fileID: 8300000, guid: 6b48f829c259d65419910e27314e921e, type: 3}
+  - {fileID: 8300000, guid: c70c40864cdd3b74c873ee6a58a03147, type: 3}
+  contestantMeet:
+  - {fileID: 8300000, guid: 35bd4d97388342749affd337827980e6, type: 3}
+  - {fileID: 8300000, guid: 41fbf91a1cbb57549a737654722332fd, type: 3}
+  - {fileID: 8300000, guid: 9e7ca64d886cbae4b8de1e57058c453a, type: 3}
+  - {fileID: 8300000, guid: 8c2a4cdfc74a4db4cbb67b5a1dcefafa, type: 3}
+  episodeStart:
+  - {fileID: 8300000, guid: 9897d4dff6a17e64bbf288df82c959e4, type: 3}
+  - {fileID: 8300000, guid: 603e55e71f409e545ba6b3353af9305d, type: 3}
+  - {fileID: 8300000, guid: 417c1b91843dc03448fd81fa0f888f52, type: 3}
+  fireDamage:
+  - {fileID: 8300000, guid: 6da68fb563634d14ba10d2beb0b084d9, type: 3}
+  - {fileID: 8300000, guid: f7d45398ed0f2684bbdbf4ae113b5ab4, type: 3}
+  - {fileID: 8300000, guid: f928d67492a4afd418bbe4501e2e2aae, type: 3}
+  - {fileID: 8300000, guid: 9d8d7ff76eea8b74187157f9db5138a7, type: 3}
+  - {fileID: 8300000, guid: 9e41bd4ad643edc48a61ebc7d8aa4b41, type: 3}
+  gameLoss:
+  - {fileID: 8300000, guid: 913b4c1c58edbd94da94c126e2967a2e, type: 3}
+  - {fileID: 8300000, guid: 1b4fe89444292954a8e54362608f5422, type: 3}
+  - {fileID: 8300000, guid: db9dc93cfdfb8cb408c3fddccefa95e9, type: 3}
+  - {fileID: 8300000, guid: fe65db4927c2e47438cfedce5c897c0d, type: 3}
+  - {fileID: 8300000, guid: c900e60090f084c4abd84d74cbf535cb, type: 3}
+  movingOn:
+  - {fileID: 8300000, guid: 0b067e39e49967645810c3e9c1a61369, type: 3}
+  - {fileID: 8300000, guid: 68b551e756d390c42b21291654f71bdc, type: 3}
+  - {fileID: 8300000, guid: dd00b8f2d04bc5b4cb0d7b9f29869e0f, type: 3}
+  nextGame:
+  - {fileID: 8300000, guid: 7d968310535b6134d9610b88b8ef4937, type: 3}
+  - {fileID: 8300000, guid: c378fa39c31de1e4eb37238aecd77dfb, type: 3}
+  - {fileID: 8300000, guid: 8d81d6943024f0048a52e23135c2fe96, type: 3}
+  - {fileID: 8300000, guid: 337990a8897f5a14a8d31f79369c4395, type: 3}
+  - {fileID: 8300000, guid: 22c28365c5079024ca650c39bdfebfe8, type: 3}
+  progress:
+  - {fileID: 8300000, guid: 369c5fca9e097e6419cc374d8e1cd980, type: 3}
+  - {fileID: 8300000, guid: 8cfbf90519715d942b9c77a2127f6f26, type: 3}
+  - {fileID: 8300000, guid: 9bda1a01eb2d26e49899372dec5e43e9, type: 3}
+  - {fileID: 8300000, guid: b4aea6183d6ad2242a9325edb69a443f, type: 3}
+  - {fileID: 8300000, guid: d6ebd29e5a6f93346a8c44836ceba027, type: 3}
+  shootTakeDamage:
+  - {fileID: 8300000, guid: 27ead0080c68a044e8a1c162a1387c77, type: 3}
+  - {fileID: 8300000, guid: 460268b461a26974e978d430c03c9781, type: 3}
+  - {fileID: 8300000, guid: f007172dc1b540d4ca4e051259ed31d0, type: 3}
+  - {fileID: 8300000, guid: 7a20ccb7b24cc0545be4726e6edbb2e9, type: 3}
+  - {fileID: 8300000, guid: 23c84f4cede075c449762b69a2c35c6a, type: 3}
+  shootDoDamage:
+  - {fileID: 8300000, guid: 3128526484c4cff4ebd48aa58b1064e7, type: 3}
+  - {fileID: 8300000, guid: 2dfa0d11b2dcdca4a9d18619e67565ab, type: 3}
+  - {fileID: 8300000, guid: b1cb4ed61972f944ebbc97679b43016e, type: 3}
+  - {fileID: 8300000, guid: 8934bb75f425f5443a48d56d77a6e6f5, type: 3}
+  - {fileID: 8300000, guid: 910bc183087dc6b45a46f9f5a5f36e8f, type: 3}
+  gameWin:
+  - {fileID: 8300000, guid: 59513da51fca2e6458c313b7a17cb405, type: 3}
+  - {fileID: 8300000, guid: 36ca96f71424d624cba9e64c4e3ba293, type: 3}
+  - {fileID: 8300000, guid: f8e9a7ceb806bb346954b7d5aaf4bbc9, type: 3}
+  - {fileID: 8300000, guid: 48ed16a3c679e36448748474a0cd72cd, type: 3}
+  - {fileID: 8300000, guid: 5984dbc3ced82cf40aed98f6e03313e8, type: 3}
+  intro: {fileID: 8300000, guid: 758fc70d2b771684c9ef17cc228d0a41, type: 3}
+  goldenGrabIntro: {fileID: 8300000, guid: 6eb0d0f57299d5e46b0e50b81af4c6be, type: 3}
+  justShootIntro: {fileID: 8300000, guid: e89c0dc4a4e47f7429792136b767d3a0, type: 3}
+  conveyorChaosIntro: {fileID: 8300000, guid: 86ee579236277d546a2dbb5d177ba1e9, type: 3}
+--- !u!114 &1073495492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073495489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 788f073a451c81249b79b014e022dcd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundContainer: {fileID: 2098334068}
+  audienceClaps: []
+  audienceStart: {fileID: 8300000, guid: 9129878930288414691d99bf78e15f5e, type: 3}
 --- !u!1 &1082190181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,7 +5124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -44.3, y: -38.4}
+  m_AnchoredPosition: {x: -44.30005, y: -38.400024}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054695194
@@ -5440,6 +5570,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98dc0a69c41a2c4b8ffd27a46e2eaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2098334067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2098334068}
+  m_Layer: 0
+  m_Name: '&Sound'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2098334068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098334067}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1073495490}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2104336708
 GameObject:
   m_ObjectHideFlags: 0

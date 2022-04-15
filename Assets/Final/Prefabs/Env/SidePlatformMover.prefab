@@ -2841,6 +2841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartImage: {fileID: 4096307534421881281}
+  gameModes: 1
 --- !u!223 &7316437953797142158
 Canvas:
   m_ObjectHideFlags: 0

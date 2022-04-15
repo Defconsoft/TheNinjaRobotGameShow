@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour
 
 
     IEnumerator StartMainGame() {
-        yield return new WaitForSeconds (2f);
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().EpisodeStartSpeech1();
+        yield return new WaitForSeconds (4f);
         StartCoroutine(uiManager.Countdown());
     }
 

@@ -78,14 +78,17 @@ public class UIManager : MonoBehaviour
         timer--;
         yield return new WaitForSeconds (1f);
         //4
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().EpisodeStartSpeech2();
         CountDownBox.text = timer.ToString();
         timer--;
         yield return new WaitForSeconds (1f);
         //3
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().EpisodeStartSpeech3();
         CountDownBox.text = timer.ToString();
         timer--;
         yield return new WaitForSeconds (1f);
         //2
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayStartAudience();
         CountDownBox.text = timer.ToString();
         timer--;
         yield return new WaitForSeconds (1f);
@@ -98,7 +101,9 @@ public class UIManager : MonoBehaviour
         timer--;
         yield return new WaitForSeconds (1f);
         titleMonitor.transform.DOMoveY(-5f, 2f);
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (3f);
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().Welcome();
+        yield return new WaitForSeconds (2f);
         titleLogo.transform.DOScale(new Vector3(5f, 5f, 5f), 2).SetEase(Ease.InSine);
         camSwitcher.camState = 4;
         gameManager.GameMode = 4;

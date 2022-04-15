@@ -139,7 +139,9 @@ public class ISO_Conveyor : MonoBehaviour
         foreach (Transform child in trashCan.transform) {
             Destroy(child.gameObject);
         }
-        
+
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().YouWin();
+
         var sequence = DOTween.Sequence();
         sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
         sequence.AppendInterval(3f);

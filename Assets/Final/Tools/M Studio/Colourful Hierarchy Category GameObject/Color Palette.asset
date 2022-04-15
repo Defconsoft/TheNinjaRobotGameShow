@@ -50,6 +50,6 @@ MonoBehaviour:
     fontStyle: 3
   - keyChar: '&'
     textColor: {r: 1, g: 1, b: 1, a: 1}
-    backgroundColor: {r: 0.9528302, g: 0.33708617, b: 0.9220358, a: 1}
+    backgroundColor: {r: 0.6132076, g: 0.21693665, b: 0.5930155, a: 1}
     textAlignment: 5
     fontStyle: 3
