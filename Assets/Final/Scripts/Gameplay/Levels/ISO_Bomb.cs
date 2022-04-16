@@ -25,6 +25,7 @@ public class ISO_Bomb : MonoBehaviour
         this.gameObject.GetComponent<BoxCollider>().enabled = false;
         if (this.tag == "IsoCollectible") {
             if (other.tag == "Player") {
+                GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayIsoCollect(false);
                 spawnOrigin.GetComponent<ISO_Conveyor>().CoinsCollected++;
                 gameManager.AddScore(scoreAmount);
                 Destroy(this.gameObject);
@@ -32,6 +33,7 @@ public class ISO_Bomb : MonoBehaviour
         } else if (this.tag == "IsoPlatform") {
             if (other.tag == "Player") {
                 Destroy(this.gameObject);
+                GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayIsoCollect(true);
                 player.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
             }
         }

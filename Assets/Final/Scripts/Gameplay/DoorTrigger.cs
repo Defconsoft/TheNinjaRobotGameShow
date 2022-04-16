@@ -23,12 +23,14 @@ public class DoorTrigger : MonoBehaviour
             if (open) {
                 endPos = door.transform.position + door.transform.up * moveDistance;
                 StartCoroutine(LerpPosition(endPos, lerpTime));
+                GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayDoorOpen(door.transform.position);
 
             }
 
             if (close) {
                 endPos = door.transform.position - door.transform.up * moveDistance;
                 StartCoroutine(LerpPosition(endPos, lerpTime));
+                GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayDoorClose(door.transform.position);  
             }
 
             transform.position = new Vector3 (transform.position.x, transform.position.y - 20f, transform.position.z);

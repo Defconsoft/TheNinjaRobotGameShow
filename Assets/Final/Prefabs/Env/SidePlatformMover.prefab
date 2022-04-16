@@ -2251,7 +2251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2606932246685261977}
   - component: {fileID: 6930550704770793845}
-  - component: {fileID: 4480577761765581192}
+  - component: {fileID: 1602297508856536887}
   m_Layer: 0
   m_Name: DoorCloseTrigger (1)
   m_TagString: Untagged
@@ -2286,7 +2286,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.16, y: 2.75, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4480577761765581192
+--- !u!114 &1602297508856536887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2295,12 +2295,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5646223040030250304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a85762bac203bd42903f1fc4c846c3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 34e159b9e9c97874b8c1252a939ba018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   open: 0
   close: 1
   door: {fileID: 4692718200311152577}
+  PlaySound: 1
   moveDistance: 5
   lerpTime: 1
 --- !u!1 &5678783222789476319

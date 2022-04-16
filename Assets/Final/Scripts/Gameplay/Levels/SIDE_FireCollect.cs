@@ -145,9 +145,11 @@ public class SIDE_FireCollect : MonoBehaviour
         Transform spawnPoint = ventPosition;
         GameObject preWarn = Instantiate(preWarnParticle, spawnPoint);
         preWarn.transform.parent = trashCan.transform ;
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayBurner(preWarn.transform.position);
         yield return new WaitForSeconds (2f);
         GameObject Fire = Instantiate(flameThrowParticle, spawnPoint);
         Fire.transform.parent = trashCan.transform ;
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayFlames(Fire.transform.position);
         yield return new WaitForSeconds (4f);
         Destroy (preWarn);
         Destroy (Fire);

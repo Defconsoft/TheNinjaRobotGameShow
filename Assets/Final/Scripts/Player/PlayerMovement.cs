@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Isometric Variables")]
     [SerializeField] private float IsometricPlayerSpeed = 5f;
-    [SerializeField] private float IsometricJumpHeight = 1f;
     [SerializeField] private float IsometricGravityValue = -9.81f;   
 
 
@@ -28,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     public bool canMove;
+    public AudioSource moveSnd;
+    public float moveVolume;
     private CharacterController controller;
 
     private Vector2 movement;
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerControls playerControls;
     private PlayerInput playerInput;
 
-
+    private Vector3 move;
     private GameManager gameManager;
 
 
@@ -79,6 +80,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+
+        if (move != Vector3.zero && controller.isGrounded && canMove) {
+            Debug.Log ("soundTrue");
+            moveSnd.volume = moveVolume;
+        } else {
+            moveSnd.volume = 0;
+            Debug.Log ("soundFalse");
+        }
+
         
        
     }
@@ -95,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     void TopDownHandleMovement(){
-        Vector3 move = new Vector3(movement.x, 0, movement.y);
+        move = new Vector3(movement.x, 0, movement.y);
         controller.Move(move * Time.deltaTime * TopDownPlayerSpeed);
 
 
@@ -133,9 +143,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerControls.Controls.Jump.triggered && controller.isGrounded) {
             playerVelocity.y = Mathf.Sqrt(SideViewJumpHeight * -2f * SideViewGravityValue);
+            GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayJumpSnd(this.transform.position);
         }
 
-        Vector3 move = new Vector3(0, 0, movement.x);
+        move = new Vector3(0, 0, movement.x);
         
         controller.Move(move * Time.deltaTime * SideViewPlayerSpeed);
 
@@ -149,11 +160,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void IsometricHandleMovement()
     {
-        if (playerControls.Controls.Jump.triggered && controller.isGrounded) {
+        /* if (playerControls.Controls.Jump.triggered && controller.isGrounded) {
             playerVelocity.y = Mathf.Sqrt(IsometricJumpHeight * -2f * IsometricGravityValue);
-        }
+        } */
 
-        Vector3 move = new Vector3(movement.x, 0, movement.y);
+        move = new Vector3(movement.x, 0, movement.y);
         controller.Move(move * Time.deltaTime * IsometricPlayerSpeed);
 
 

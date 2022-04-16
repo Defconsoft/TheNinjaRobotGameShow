@@ -13,11 +13,13 @@ public class ISO_Conveyor : MonoBehaviour
     private float perc = 0f;
     public float moveDistance = 1f;
     bool removeFallAway = false;
+    bool FallOnce;
     Vector3 startPos;
     Vector3 endPos;
 
     [Header("EndAway")]
     public GameObject EndAway;
+    bool EndOnce;
     private float perc2 = 0f;
     bool removeEndAway = false;
     Vector3 startPosEnd;
@@ -167,6 +169,10 @@ public class ISO_Conveyor : MonoBehaviour
 
     
     void RemoveFallAway(){
+        if (!FallOnce){
+            FallOnce = true;
+            GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayPlatformDown(FallAway.transform.position);
+        }
         //increment timer once per frame
         currentLerpTime += Time.deltaTime;
         if (currentLerpTime > lerpTime) {
@@ -179,6 +185,11 @@ public class ISO_Conveyor : MonoBehaviour
     }
 
     void RemoveEndAway(){
+        if (!EndOnce){
+            EndOnce = true;
+            GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayPlatformUp(EndAway.transform.position);
+        }
+        
         //increment timer once per frame
         currentLerpTime += Time.deltaTime;
         if (currentLerpTime > lerpTime) {

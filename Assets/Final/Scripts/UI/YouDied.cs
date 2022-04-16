@@ -26,6 +26,8 @@ public class YouDied : MonoBehaviour
         sequence2.Append(Died.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (194.25f, -105f), 1.5f).SetEase(Ease.OutQuart));
         sequence2.AppendInterval(0.3f);
         sequence2.Append(Died.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (1508.5f, -105f), 1.5f).SetEase(Ease.InQuart));
+
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayYouLose();
     }
 
     // Update is called once per frame

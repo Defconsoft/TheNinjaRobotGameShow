@@ -50,13 +50,15 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
-            EnemyAttack();
+            GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayShootSpeech(false);
+            StartCoroutine(Attack());
         }
     }
 
     public IEnumerator Death() {
         alive = false;
         Destroy (agent);
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayEnemyDeath(this.transform.position);
         Destroy (this.GetComponent<CapsuleCollider>());
         deathEffect.SetActive (true);
         gameManager.AddScore (scoreAmount);
@@ -70,6 +72,7 @@ public class EnemyController : MonoBehaviour
     public IEnumerator Attack() {
         alive = false;
         Destroy (agent);
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayEnemyDeath(this.transform.position);
         Destroy (this.GetComponent<CapsuleCollider>());
         Destroy(enemyModel);
         target.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
@@ -77,11 +80,6 @@ public class EnemyController : MonoBehaviour
         tdGenerator.EnemyDied();
         yield return new WaitForSeconds(6f);
         Destroy(this.gameObject);
-    }
-    void EnemyAttack()
-    {
-        //target.GetComponent<FPS_PlayerHealth>().playerHealth -= damageAmount;
-        StartCoroutine("Attack");
     }
 
 }

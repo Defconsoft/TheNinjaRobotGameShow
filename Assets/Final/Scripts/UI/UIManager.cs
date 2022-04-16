@@ -101,8 +101,10 @@ public class UIManager : MonoBehaviour
         timer--;
         yield return new WaitForSeconds (1f);
         titleMonitor.transform.DOMoveY(-5f, 2f);
-        yield return new WaitForSeconds (3f);
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayTheme();
+        yield return new WaitForSeconds (6f);
         GameObject.Find("SoundManager").GetComponent<SpeechManager>().Welcome();
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayClapLoops();
         yield return new WaitForSeconds (2f);
         titleLogo.transform.DOScale(new Vector3(5f, 5f, 5f), 2).SetEase(Ease.InSine);
         camSwitcher.camState = 4;
@@ -122,6 +124,8 @@ public class UIManager : MonoBehaviour
         }
 
         TitleScreen.enabled = false;
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayNextContestant();
+
     }
 
 
@@ -141,6 +145,8 @@ public class UIManager : MonoBehaviour
         playerMovement.canMove = true;
         firstStart.interactable = false;
         //InGameMoveIn();
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayNextGame();     
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayImpending();
         TitleLight.SetActive(false);
     }
 
@@ -157,6 +163,8 @@ public class UIManager : MonoBehaviour
         gameManager.GameMode = 4;
         //InGameMoveOut();
         currentEnd = currentScene;
+        
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayProgress();
         StartCoroutine (EndLevelWait());
         player.transform.DOMove(movePoint.position, 2);
     }
@@ -170,6 +178,8 @@ public class UIManager : MonoBehaviour
         camSwitcher.camState = 0;
         gameManager.GameMode = 0;
         playerMovement.canMove = true;
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayImpending();
+        GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayNextGame();
         InGameMoveIn();
         currentEnd.GetComponent<EndSceneUIManager>().StartBtn.interactable = false;
     }

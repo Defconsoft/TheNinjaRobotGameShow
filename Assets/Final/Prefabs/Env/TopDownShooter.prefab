@@ -153,6 +153,7 @@ MonoBehaviour:
   open: 0
   close: 1
   door: {fileID: 4692718200311152577}
+  PlaySound: 1
   moveDistance: 3
   lerpTime: 1
 --- !u!1 &1408467491010092440
@@ -603,6 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartImage: {fileID: 1583618067357838340}
+  gameModes: 0
 --- !u!223 &7396162111082527694
 Canvas:
   m_ObjectHideFlags: 0
@@ -707,6 +709,7 @@ MonoBehaviour:
   open: 1
   close: 0
   door: {fileID: 4694479301440986306}
+  PlaySound: 0
   moveDistance: 3
   lerpTime: 1
 --- !u!1 &3161889493740474741
@@ -1365,6 +1368,7 @@ MonoBehaviour:
   open: 1
   close: 0
   door: {fileID: 4692718200311152577}
+  PlaySound: 0
   moveDistance: 3
   lerpTime: 1
 --- !u!1 &5205429859310323213
@@ -1958,6 +1962,7 @@ MonoBehaviour:
   open: 0
   close: 1
   door: {fileID: 4694479301440986306}
+  PlaySound: 0
   moveDistance: 3
   lerpTime: 1
 --- !u!1 &8584665227793508968

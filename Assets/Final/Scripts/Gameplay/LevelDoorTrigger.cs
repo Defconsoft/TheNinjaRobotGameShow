@@ -9,6 +9,8 @@ public class LevelDoorTrigger : MonoBehaviour
 
     public GameObject door;
 
+    public bool PlaySound;
+
     public float moveDistance = 1f;
 
     Vector3 endPos;
@@ -22,12 +24,17 @@ public class LevelDoorTrigger : MonoBehaviour
         if (other.tag == "Player") {
             if (open) {
                 endPos = door.transform.position + door.transform.right * moveDistance;
+                GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayDoorOpen(door.transform.position);
                 StartCoroutine(LerpPosition(endPos, lerpTime));
             }
 
             if (close) {
                 endPos = door.transform.position - door.transform.right * moveDistance;
                 StartCoroutine(LerpPosition(endPos, lerpTime));
+                GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayDoorClose(door.transform.position);                
+                if (PlaySound){
+                    GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayMovingOn();
+                }
 
             }
 

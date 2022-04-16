@@ -75,6 +75,7 @@ public class TD_Shooter : MonoBehaviour
         enemiesKilled++;
     }
 
+
     private void Update() {
         
         InGameAssist.text = (numberEnemies - enemiesKilled).ToString() + " ENEMIES TO KILL";

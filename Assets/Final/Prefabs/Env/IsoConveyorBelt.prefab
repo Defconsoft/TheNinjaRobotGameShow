@@ -823,6 +823,7 @@ MonoBehaviour:
   open: 1
   close: 0
   door: {fileID: 1798975312149259439}
+  PlaySound: 0
   moveDistance: 5
   lerpTime: 1
 --- !u!1 &3204533422890721694
@@ -1489,6 +1490,7 @@ MonoBehaviour:
   open: 0
   close: 1
   door: {fileID: 1798975312149259439}
+  PlaySound: 0
   moveDistance: 5
   lerpTime: 1
 --- !u!1 &5883998729672021736
@@ -1596,6 +1598,7 @@ MonoBehaviour:
   open: 0
   close: 1
   door: {fileID: 3374365837819211645}
+  PlaySound: 1
   moveDistance: 3
   lerpTime: 1
 --- !u!1 &6956226825660481565
@@ -1987,6 +1990,7 @@ MonoBehaviour:
   open: 1
   close: 0
   door: {fileID: 3374365837819211645}
+  PlaySound: 0
   moveDistance: 3
   lerpTime: 1
 --- !u!1 &7962726245304748229
