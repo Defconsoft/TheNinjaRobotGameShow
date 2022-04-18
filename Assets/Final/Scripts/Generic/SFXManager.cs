@@ -12,33 +12,29 @@ public class SFXManager : MonoBehaviour
     public AudioClip[] CrowdCheering;
     public AudioClip[] CrowdUpset;
     public AudioClip[] GameRotate;
-    public AudioClip[] EnemyDeath;
+    public AudioClip[] EnemyDeath;//
 
     [Header("One Shots")]
     public AudioClip audienceStart;//
-    public AudioClip ButtonHover;
-    public AudioClip ButtonClick;
+    public AudioClip ButtonHover;//
+    public AudioClip ButtonClick;//
     public AudioClip JumpSnd;//
     public AudioClip DoorOpen;//
     public AudioClip DoorClose;//
-    public AudioClip EnemySpawn;
-    public AudioClip EnemyMove;
-    public AudioClip PlayerHit;
+    public AudioClip EnemySpawn;//
+    public AudioClip EnemyMove;//
+    public AudioClip PlayerHit;//
     public AudioClip GameChoice;
-    public AudioClip CoinSpawn;   
-    public AudioClip CoinCollect;   
+    public AudioClip CoinSpawn;   //
+    public AudioClip CoinCollect; //  
     public AudioClip BurnerSnd;//   
     public AudioClip FireSnd;//   
-    public AudioClip FireHit;  
     public AudioClip PlatformDown;//  
     public AudioClip PlatformUp;//
-    public AudioClip SpawnCoin;
-    public AudioClip SpawnBox;
-    public AudioClip BoxExplode;
+    public AudioClip SpawnBox;//
 
     [Header("Loops")]
     public AudioClip audienceClaps;//
-    public AudioClip ConveyorSnd;
 
 
 
@@ -50,7 +46,6 @@ public class SFXManager : MonoBehaviour
     public AudioClip ConveyorChaosJingle;//
 
 
-    public AudioSource BGMusicAS;
 
 
     public void PlayStartAudience(){
@@ -60,6 +55,24 @@ public class SFXManager : MonoBehaviour
         audioSource.clip = audienceStart;
         audioSource.PlayOneShot(audienceStart);
         Destroy(soundGameObject, audienceStart.length);
+    }
+
+    public void PlayHover(){
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = ButtonHover;
+        audioSource.PlayOneShot(ButtonHover);
+        Destroy(soundGameObject, ButtonHover.length);
+    }
+
+    public void PlayClick(){
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = ButtonClick;
+        audioSource.PlayOneShot(ButtonClick);
+        Destroy(soundGameObject, ButtonClick.length);
     }
 
     public void PlayLaserShot(Vector3 position){
@@ -84,6 +97,28 @@ public class SFXManager : MonoBehaviour
         audioSource.spatialBlend = 1f;
         audioSource.Play();
         Destroy(soundGameObject, EnemyDeath[soundChoice].length);
+    }
+
+    public void PlayCrowdHappy(Vector3 position){
+        int soundChoice = Random.Range(0, CrowdCheering.Length);
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = CrowdCheering[soundChoice];
+        audioSource.Play();
+        Destroy(soundGameObject, CrowdCheering[soundChoice].length);
+    }
+
+    public void PlayCrowdUnppy(Vector3 position){
+        int soundChoice = Random.Range(0, CrowdUpset.Length);
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = CrowdUpset[soundChoice];
+        audioSource.Play();
+        Destroy(soundGameObject, CrowdUpset[soundChoice].length);
     }
 
     public void PlayJumpSnd(Vector3 position){
@@ -163,7 +198,94 @@ public class SFXManager : MonoBehaviour
         Destroy(soundGameObject, FireSnd.length);
     }
 
+    public void PlayEnemySpawn(Vector3 position){
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = EnemySpawn;
+        audioSource.spatialBlend = 1f;
+        audioSource.Play();
+        Destroy(soundGameObject, EnemySpawn.length);
+    }
 
+    public void PlayPlayerHit(Vector3 position){
+        float pitchRnd = Random.Range(0.8f, 1.3f);
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = PlayerHit;
+        audioSource.spatialBlend = 1f;
+        audioSource.pitch = pitchRnd;
+        audioSource.Play();
+        Destroy(soundGameObject, PlayerHit.length);
+    }
+
+
+
+    public void PlayCollectCoin(Vector3 position){
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = CoinCollect;
+        audioSource.Play();
+        Destroy(soundGameObject, CoinCollect.length);
+    }
+
+    public void PlaySpawnCoin(Vector3 position){
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = CoinSpawn;
+        audioSource.spatialBlend = 1f;
+        audioSource.Play();
+        Destroy(soundGameObject, CoinSpawn.length);
+    }
+
+    public void PlaySpawnBox(Vector3 position){
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = SpawnBox;
+        audioSource.spatialBlend = 1f;
+        audioSource.Play();
+        Destroy(soundGameObject, SpawnBox.length);
+    }
+
+    public void PlayGameRotate(Vector3 position){
+        int soundChoice = Random.Range(0, GameRotate.Length);
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = GameRotate[soundChoice];
+        audioSource.minDistance = 0;
+        audioSource.maxDistance = 10f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear; 
+        audioSource.volume = 0.5f;
+        audioSource.spatialBlend = 1f;
+        audioSource.Play();
+        Destroy(soundGameObject, GameRotate[soundChoice].length);
+    }
+
+    public void PlayGameSelect(Vector3 position){
+        GameObject soundGameObject = new GameObject("sfx");
+        soundGameObject.transform.parent = SoundContainer;
+        soundGameObject.transform.position = position;
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.clip = GameChoice;
+        audioSource.minDistance = 0;
+        audioSource.maxDistance = 10f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear; 
+        audioSource.volume = 0.5f;
+        audioSource.spatialBlend = 1f;
+        audioSource.Play();
+        Destroy(soundGameObject, GameChoice.length);
+    }
 
     /////////MUSIC//////////////////////
     public void PlayTheme(){
@@ -226,34 +348,7 @@ public class SFXManager : MonoBehaviour
     }
 
 
-    public void PlayBGMusic(){
-        BGMusicAS.Play();
-        StartCoroutine(FadeInBG());
-    }
 
-    public void StopBGMusic(){
-        StartCoroutine(FadeOutBG());
-    }
-
-    IEnumerator FadeInBG(){
-
-        while(BGMusicAS.volume < 0.1f){
-            BGMusicAS.volume = BGMusicAS.volume + 0.01f;
-            yield return new WaitForEndOfFrame();
-        }
-
-    }
-
-    IEnumerator FadeOutBG(){
-
-        while(BGMusicAS.volume > 0){
-            BGMusicAS.volume = BGMusicAS.volume - 0.01f;
-            yield return new WaitForEndOfFrame();
-        }
-
-        BGMusicAS.Stop();
-
-    }
 
 
 }

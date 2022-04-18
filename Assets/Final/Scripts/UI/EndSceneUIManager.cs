@@ -36,6 +36,7 @@ public class EndSceneUIManager : MonoBehaviour
     public void SetTheNextLevelGraphic() {
         changingLevel = true;
         nextLevelImage.sprite = levelSprites[levelGen.NextRoom];
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayGameSelect(this.transform.position);
         nextLevelImage.GetComponent<RectTransform>().DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 1f, 10, 1f);
     }
 
@@ -51,6 +52,7 @@ public class EndSceneUIManager : MonoBehaviour
             }
             nextLevelImage.sprite = levelSprites[index];
             yield return new WaitForSeconds(0.3f);
+            GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayGameRotate(this.transform.position);
         }
 
         yield return null;

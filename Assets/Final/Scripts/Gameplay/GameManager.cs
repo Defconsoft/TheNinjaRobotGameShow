@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     private GameObject mainCamera;
     private CamSwitcher camSwitcher;
     private GameObject player;
-
+    private PlayerInput playerInput;
 
     [Header ("Shooter Variables")] 
     public int TotalShooterEnemies;
@@ -45,10 +46,16 @@ public class GameManager : MonoBehaviour
         uiManager.TitleScreen.enabled = true;
         StartCoroutine(StartMainGame());
         DOTween.SetTweensCapacity(1250,50);
+
+
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update() {
-
+        if (Keyboard.current.rKey.wasPressedThisFrame){
+            Scene scene = SceneManager.GetActiveScene(); 
+            SceneManager.LoadScene(scene.name);    
+        }
 
 
     }

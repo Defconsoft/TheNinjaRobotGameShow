@@ -14,6 +14,8 @@ public class EndLevelTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
 
         if (other.tag == "Player") {
+            Destroy (this.GetComponent<BoxCollider>());
+            other.transform.GetComponent<PlayerMovement>().moveVolume = 0;
             uIManager.EndLevelBegin(transform, this.gameObject.transform.parent.transform.GetChild(0).gameObject);
         }
     }

@@ -685,6 +685,7 @@ GameObject:
   - component: {fileID: 316584922}
   - component: {fileID: 316584921}
   - component: {fileID: 316584920}
+  - component: {fileID: 316584923}
   m_Layer: 5
   m_Name: No
   m_TagString: Untagged
@@ -806,6 +807,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316584918}
   m_CullTransparentMesh: 1
+--- !u!114 &316584923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316584918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &317474995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,6 +2378,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905101545}
   m_CullTransparentMesh: 1
+--- !u!1 &907818777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4947163276934350921, guid: 9a8e3ca7b7429054f9fe2b2a32cf8242, type: 3}
+  m_PrefabInstance: {fileID: 1246472942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &907818782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907818777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &913244463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,9 +3128,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 34bc280fcf4943647af4a6f875408c2c, type: 3}
   - {fileID: 8300000, guid: 3d6b5604050189640a4868c6ea1b392b, type: 3}
   - {fileID: 8300000, guid: ef6ce877b9e20fc4b975148a3357e5c9, type: 3}
-  CrowdCheering: []
-  CrowdUpset: []
-  GameRotate: []
+  CrowdCheering:
+  - {fileID: 8300000, guid: 415b6a4d4d5765c4a8251da85765ffc4, type: 3}
+  - {fileID: 8300000, guid: da7ab86346d7d5146bd2b937f72489cd, type: 3}
+  - {fileID: 8300000, guid: f2319a5668252bb479df5653e1b21ffe, type: 3}
+  - {fileID: 8300000, guid: 90f403bf2c34fe444be84304d7b63c3e, type: 3}
+  CrowdUpset:
+  - {fileID: 8300000, guid: f491ba7f121e62d4ca4ff37ee54d02e7, type: 3}
+  - {fileID: 8300000, guid: 20b822ae8c8bcd443b8fe991d288ba40, type: 3}
+  - {fileID: 8300000, guid: 7fd8f130302b47541a89921629c3e074, type: 3}
+  - {fileID: 8300000, guid: 50c0bd5c7e0560b4cac0b1c368a621cb, type: 3}
+  - {fileID: 8300000, guid: 5f1dd140ce0aa8041862bd275c0d75f9, type: 3}
+  GameRotate:
+  - {fileID: 8300000, guid: 8f3eb8dd20b5f0149a148fc7435cf8dd, type: 3}
+  - {fileID: 8300000, guid: e411dc55d74c86348ad4705f513a997b, type: 3}
+  - {fileID: 8300000, guid: 3a0d52bd40f2a734db718da1dc9e37c6, type: 3}
+  - {fileID: 8300000, guid: 18ef7364ca2573b4a9fddff5287c37a9, type: 3}
+  - {fileID: 8300000, guid: 1d9ecb6ecd2c00649aa3bb4568869fc7, type: 3}
+  - {fileID: 8300000, guid: 47b2105fb14685e46928aecf557065b2, type: 3}
+  - {fileID: 8300000, guid: 7094e09eeb4c6084397c2b0145052760, type: 3}
   EnemyDeath:
   - {fileID: 8300000, guid: 34ef3cfb4c5a16746a423bd8fd37e643, type: 3}
   - {fileID: 8300000, guid: 3e069ef714bc811469f4ede01245c3e8, type: 3}
@@ -3045,33 +3157,28 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4fde3647df10b6a4da769f8d937c68a6, type: 3}
   - {fileID: 8300000, guid: b9bd3174cae0ff54e98c15018ef4f354, type: 3}
   audienceStart: {fileID: 8300000, guid: 9129878930288414691d99bf78e15f5e, type: 3}
-  ButtonHover: {fileID: 0}
-  ButtonClick: {fileID: 0}
+  ButtonHover: {fileID: 8300000, guid: 4adc6e1e073f9954b96b2bf1eea2f409, type: 3}
+  ButtonClick: {fileID: 8300000, guid: 2e663b9b72e28ce4fb8c0fffe32c0241, type: 3}
   JumpSnd: {fileID: 8300000, guid: cebf80ce09d88d145a11b715881470dc, type: 3}
   DoorOpen: {fileID: 8300000, guid: 32487bd9763d3ad4382c9a56b0de3b01, type: 3}
   DoorClose: {fileID: 8300000, guid: c2bc4b74718c53e42b3492aadf446787, type: 3}
-  EnemySpawn: {fileID: 0}
-  EnemyMove: {fileID: 0}
-  PlayerHit: {fileID: 0}
-  GameChoice: {fileID: 0}
-  CoinSpawn: {fileID: 0}
-  CoinCollect: {fileID: 0}
+  EnemySpawn: {fileID: 8300000, guid: dbcbe50b62694e6449193a166c0f7180, type: 3}
+  EnemyMove: {fileID: 8300000, guid: 23d426cf9778eb043a39f95c482d0174, type: 3}
+  PlayerHit: {fileID: 8300000, guid: 5c08352d3b67c5948a52f492a1615bb1, type: 3}
+  GameChoice: {fileID: 8300000, guid: 41c971fe355fb494b86fced7c8a85e0c, type: 3}
+  CoinSpawn: {fileID: 8300000, guid: eef2aad5920fc9443b4e8d5c4bb1916d, type: 3}
+  CoinCollect: {fileID: 8300000, guid: 26aedba8f36af2e44a7617e3962c0fa9, type: 3}
   BurnerSnd: {fileID: 8300000, guid: edd780e0bbd72db47bb47f1c1c630d65, type: 3}
   FireSnd: {fileID: 8300000, guid: c15f246ddc1dfb545a875a505bde074f, type: 3}
-  FireHit: {fileID: 0}
   PlatformDown: {fileID: 8300000, guid: 21dd833dd65f06c4badf0af2efe021eb, type: 3}
   PlatformUp: {fileID: 8300000, guid: 430858ce18afe484f95c80b2c0a0e7dd, type: 3}
-  SpawnCoin: {fileID: 0}
-  SpawnBox: {fileID: 0}
-  BoxExplode: {fileID: 0}
+  SpawnBox: {fileID: 8300000, guid: 991cab4ffcb1f2d4f8e7ca55d07f6f4d, type: 3}
   audienceClaps: {fileID: 8300000, guid: 125a2fdbbc77d384b9d21e12256d36f5, type: 3}
-  ConveyorSnd: {fileID: 0}
   ThemeTune: {fileID: 8300000, guid: 60ba659eca6a9a24d9b2d5f55dc85801, type: 3}
   ImpendingJingle: {fileID: 8300000, guid: 7c404c5bae7e76a4796c5b7a8f7510ce, type: 3}
   JustShootJingle: {fileID: 8300000, guid: 6547fc008600e9849b344cf6f74f19a1, type: 3}
   GoldenGrabJingle: {fileID: 8300000, guid: 33b5e82386711d74ea38cce088b08480, type: 3}
   ConveyorChaosJingle: {fileID: 8300000, guid: dbeab2e19c7618845b6c8804f28987e2, type: 3}
-  BGMusicAS: {fileID: 0}
 --- !u!1 &1082190181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4337,6 +4444,7 @@ GameObject:
   - component: {fileID: 1646919623}
   - component: {fileID: 1646919622}
   - component: {fileID: 1646919621}
+  - component: {fileID: 1646919624}
   m_Layer: 5
   m_Name: Yes
   m_TagString: Untagged
@@ -4458,6 +4566,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646919619}
   m_CullTransparentMesh: 1
+--- !u!114 &1646919624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646919619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1732761353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4601383339195110653, guid: 9ed4211460b405a4683504079947b2d3, type: 3}
@@ -4505,6 +4658,7 @@ GameObject:
   - component: {fileID: 1754887489}
   - component: {fileID: 1754887488}
   - component: {fileID: 1754887487}
+  - component: {fileID: 1754887490}
   m_Layer: 0
   m_Name: StartBtn
   m_TagString: Untagged
@@ -4626,6 +4780,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754887485}
   m_CullTransparentMesh: 1
+--- !u!114 &1754887490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754887485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1789940140
 GameObject:
   m_ObjectHideFlags: 3
@@ -5145,6 +5344,7 @@ GameObject:
   - component: {fileID: 2054695196}
   - component: {fileID: 2054695195}
   - component: {fileID: 2054695194}
+  - component: {fileID: 2054695197}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -5266,6 +5466,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054695192}
   m_CullTransparentMesh: 1
+--- !u!114 &2054695197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054695192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1073495492}
+          m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+          m_MethodName: PlayClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2059185922
 GameObject:
   m_ObjectHideFlags: 0
@@ -6152,7 +6397,10 @@ MonoBehaviour:
   playerController: {fileID: 2139852449}
   playerModel: {fileID: 687640913}
   DeathCanvas: {fileID: 2424501381689964219, guid: d90bdacdd168bf54eb382600f698d3d5, type: 3}
+  hitParticle: {fileID: 4132875866754494944, guid: 48e47dc03e113c041a970d9aa18675e6, type: 3}
+  trashCan: {fileID: 1751347111}
   Dead: 0
+  HitEffect: 0
 --- !u!114 &2139852451
 MonoBehaviour:
   m_ObjectHideFlags: 0

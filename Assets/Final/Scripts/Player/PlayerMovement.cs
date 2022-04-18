@@ -82,15 +82,12 @@ public class PlayerMovement : MonoBehaviour
 
 
         if (move != Vector3.zero && controller.isGrounded && canMove) {
-            Debug.Log ("soundTrue");
             moveSnd.volume = moveVolume;
         } else {
             moveSnd.volume = 0;
-            Debug.Log ("soundFalse");
         }
 
-        
-       
+      
     }
 
     void HandleInput(){

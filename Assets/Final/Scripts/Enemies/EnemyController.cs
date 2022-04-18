@@ -13,9 +13,10 @@ public class EnemyController : MonoBehaviour
     public GameObject enemyModel;
     public float damageAmount;
     public int scoreAmount;
-    public GameObject attackEffect, deathEffect;
+    public GameObject attackEffect, deathEffect, explosion;
     public GameObject spawnOrigin;
     private TD_Shooter tdGenerator;
+    private AudioSource audioSource;
     bool alive = true;
 
 
@@ -27,8 +28,11 @@ public class EnemyController : MonoBehaviour
         target = GameObject.Find("Player");  
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         agent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
         tdGenerator = spawnOrigin.transform.GetComponent<TD_Shooter>();
+
         RandomiseTheEnemy();
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayEnemySpawn(transform.position);
     }
 
     public void RandomiseTheEnemy() {
@@ -58,9 +62,11 @@ public class EnemyController : MonoBehaviour
     public IEnumerator Death() {
         alive = false;
         Destroy (agent);
+        Destroy (audioSource);
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayEnemyDeath(this.transform.position);
         Destroy (this.GetComponent<CapsuleCollider>());
         deathEffect.SetActive (true);
+        explosion.SetActive (true);
         gameManager.AddScore (scoreAmount);
         Destroy(enemyModel);
         tdGenerator.EnemyDied();
@@ -72,6 +78,7 @@ public class EnemyController : MonoBehaviour
     public IEnumerator Attack() {
         alive = false;
         Destroy (agent);
+        Destroy (audioSource);
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayEnemyDeath(this.transform.position);
         Destroy (this.GetComponent<CapsuleCollider>());
         Destroy(enemyModel);

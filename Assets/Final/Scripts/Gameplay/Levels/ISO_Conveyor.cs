@@ -138,6 +138,7 @@ public class ISO_Conveyor : MonoBehaviour
     private IEnumerator EndTDGame(){
         CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
         uIManager.InGameMoveOut();
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayCrowdHappy(player.transform.position);
         foreach (Transform child in trashCan.transform) {
             Destroy(child.gameObject);
         }

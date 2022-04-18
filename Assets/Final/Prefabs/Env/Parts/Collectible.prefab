@@ -129,10 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOrigin: {fileID: 0}
-  player: {fileID: 0}
-  gameManager: {fileID: 0}
   damageAmount: 0.1
   scoreAmount: 100
+  isCoin: 1
 --- !u!65 &6171881926560073044
 BoxCollider:
   m_ObjectHideFlags: 0

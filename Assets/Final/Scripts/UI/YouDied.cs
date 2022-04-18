@@ -12,7 +12,7 @@ public class YouDied : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayCrowdUnppy(transform.position);
         var sequence1 = DOTween.Sequence();
 
         sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (-123f, 112.5f), 1.5f).SetEase(Ease.OutQuart));

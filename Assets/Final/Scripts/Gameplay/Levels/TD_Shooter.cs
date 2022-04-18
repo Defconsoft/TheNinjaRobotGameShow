@@ -128,6 +128,7 @@ public class TD_Shooter : MonoBehaviour
     private IEnumerator EndTDGame(){
         CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
         uIManager.InGameMoveOut();
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayCrowdHappy(player.transform.position);
         foreach (Transform child in trashcan.transform) {
             Destroy(child.gameObject);
         }

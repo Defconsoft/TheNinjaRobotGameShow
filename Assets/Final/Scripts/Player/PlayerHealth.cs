@@ -17,7 +17,10 @@ public class PlayerHealth : MonoBehaviour
     private UIManager uIManager;
     private CamSwitcher camSwitcher;
     public GameObject DeathCanvas;
+    public GameObject hitParticle;
+    public GameObject trashCan;
     public bool Dead;
+    public bool HitEffect;
 
     private void Start() {
         player = GameObject.Find("Player");
@@ -48,12 +51,30 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount){
         Health = Health - damageAmount;
+        if (!HitEffect){
+            StartCoroutine(PlayHitEffect());
+        }
+
+    }
+
+    IEnumerator PlayHitEffect(){
+        HitEffect = true;
+        SpawnHitParticle();
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayPlayerHit(this.transform.position);
+        yield return new WaitForSeconds(0.3f);
+        HitEffect = false;
+    }
+
+    public void SpawnHitParticle(){
+        GameObject clone = Instantiate(hitParticle, transform);
+        Destroy(clone, 1f);
     }
 
 
 
     public void Death(){
         camSwitcher.BlendToPerspective();
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayEnemyDeath(this.transform.position);
         uIManager.InGameMoveOut();
         player.transform.DORotate(new Vector3 (0,0,0), 1f);
         player.GetComponent<PlayerMovement>().canMove = false;

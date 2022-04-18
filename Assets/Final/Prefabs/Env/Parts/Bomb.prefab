@@ -129,10 +129,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOrigin: {fileID: 0}
-  player: {fileID: 0}
-  gameManager: {fileID: 0}
+  explosionParticle: {fileID: 1809022330002312, guid: ed511b7776af6174e9b1255c7a81e59c, type: 3}
+  trashCan: {fileID: 0}
   damageAmount: 0.1
   scoreAmount: 100
+  isCoin: 0
 --- !u!65 &6171881926560073044
 BoxCollider:
   m_ObjectHideFlags: 0

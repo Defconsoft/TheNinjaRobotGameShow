@@ -101,7 +101,7 @@ public class SIDE_FireCollect : MonoBehaviour
     private IEnumerator EndSIDEGame(){
         CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
         uIManager.InGameMoveOut();
-        
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayCrowdHappy(player.transform.position);
         GameObject.Find("SoundManager").GetComponent<SpeechManager>().YouWin();
 
         var sequence = DOTween.Sequence();
