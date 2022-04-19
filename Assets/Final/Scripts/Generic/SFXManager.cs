@@ -106,6 +106,7 @@ public class SFXManager : MonoBehaviour
         soundGameObject.transform.position = position;
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.clip = CrowdCheering[soundChoice];
+        audioSource.volume = 0.5f;
         audioSource.Play();
         Destroy(soundGameObject, CrowdCheering[soundChoice].length);
     }
@@ -117,6 +118,7 @@ public class SFXManager : MonoBehaviour
         soundGameObject.transform.position = position;
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.clip = CrowdUpset[soundChoice];
+        audioSource.volume = 0.5f;
         audioSource.Play();
         Destroy(soundGameObject, CrowdUpset[soundChoice].length);
     }
@@ -210,7 +212,7 @@ public class SFXManager : MonoBehaviour
     }
 
     public void PlayPlayerHit(Vector3 position){
-        float pitchRnd = Random.Range(0.8f, 1.3f);
+        float pitchRnd = Random.Range(0.9f, 1.1f);
         GameObject soundGameObject = new GameObject("sfx");
         soundGameObject.transform.parent = SoundContainer;
         soundGameObject.transform.position = position;

@@ -1780,6 +1780,7 @@ MonoBehaviour:
   envContainer: {fileID: 216368563}
   NextRoom: 0
   roomNumber: 0
+  LastRoom: 0
 --- !u!1 &753459861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2532,7 +2533,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -3971,6 +3972,7 @@ MonoBehaviour:
   TotalShooterEnemies: 50
   MaxShooterEnemies: 5
   EnemiesAddPerLevel: 5
+  fireRateIncrease: 0.1
   TotalCoins: 10
   CoinsToAdd: 2
   TotalFireCoins: 10

@@ -40,7 +40,7 @@ public class SpeechManager : MonoBehaviour
             float tempfloat = Random.Range(0,1f);
 
             if (!isBullet){
-                if (tempfloat >= 0.5f){
+                if (tempfloat >= 0.75f){
                     int soundChoice = Random.Range(0, shootTakeDamage.Length);
                     GameObject soundGameObject = new GameObject("speech");
                     soundGameObject.transform.parent = SoundContainer;
@@ -51,7 +51,7 @@ public class SpeechManager : MonoBehaviour
                     Destroy(soundGameObject, shootTakeDamage[soundChoice].length);
                 }
             } else {
-                if (tempfloat >= 0.5f){
+                if (tempfloat >= 0.75f){
                     int soundChoice = Random.Range(0, shootDoDamage.Length);
                     GameObject soundGameObject = new GameObject("speech");
                     soundGameObject.transform.parent = SoundContainer;

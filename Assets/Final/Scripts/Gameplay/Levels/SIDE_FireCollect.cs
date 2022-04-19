@@ -54,7 +54,7 @@ public class SIDE_FireCollect : MonoBehaviour
 
     public void StartSIDEGame(){
         //Put the player in the correct position
-        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -515f), 1.5f);
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -544f), 1.5f);
         uIManager.InGameMoveIn();
         coinsToCollect = gameManager.TotalFireCoins;
         FireCollectActive = true;
@@ -77,7 +77,7 @@ public class SIDE_FireCollect : MonoBehaviour
                     Destroy(child.gameObject);
                     //child.transform.position = new Vector3(-300, child.transform.position.y, child.transform.position.z);
                 }
-                gameManager.FireCollectFinish();
+                gameManager.GameFinish();
                 EndTrigger.SetActive (true);
             }
         }

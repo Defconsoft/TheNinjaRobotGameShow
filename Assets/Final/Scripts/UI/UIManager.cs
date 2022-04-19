@@ -166,6 +166,7 @@ public class UIManager : MonoBehaviour
         
         GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayProgress();
         StartCoroutine (EndLevelWait());
+        player.GetComponent<PlayerMovement>().canMove = false;
         player.transform.DOMove(movePoint.position, 2);
     }
 

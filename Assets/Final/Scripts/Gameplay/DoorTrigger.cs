@@ -8,6 +8,7 @@ public class DoorTrigger : MonoBehaviour
     public bool open, close;
 
     public GameObject door;
+    public bool PlaySound;
 
     public float moveDistance = 1f;
 
@@ -30,7 +31,10 @@ public class DoorTrigger : MonoBehaviour
             if (close) {
                 endPos = door.transform.position - door.transform.up * moveDistance;
                 StartCoroutine(LerpPosition(endPos, lerpTime));
-                GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayDoorClose(door.transform.position);  
+                GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayDoorClose(door.transform.position); 
+                if (PlaySound){
+                    GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayMovingOn();
+                } 
             }
 
             transform.position = new Vector3 (transform.position.x, transform.position.y - 20f, transform.position.z);

@@ -15,6 +15,7 @@ public class LevelGen : MonoBehaviour
     public GameObject envContainer;
     public int NextRoom;
     public int roomNumber = 0;
+    public int LastRoom;
 
 
     // Start is called before the first frame update
@@ -24,11 +25,6 @@ public class LevelGen : MonoBehaviour
         GenerateNextRoom();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void GenerateNextRoom() {
         //first spawn a container
@@ -40,13 +36,15 @@ public class LevelGen : MonoBehaviour
         //move the spawnpoint
         SetNewSpawnPoint(nextContainer.transform);
 
-        //then spawn a level room
+        
+        GenerateMainRoom();
+/*         //then spawn a level room
         NextRoom = Random.Range(0, roomPrefabs.Length);
         GameObject levelRoom = Instantiate(roomPrefabs[NextRoom], spawnPoint);
         //move its parent
         levelRoom.transform.parent = envContainer.transform;
         //move the spawnpoint
-        SetNewSpawnPoint(levelRoom.transform);
+        SetNewSpawnPoint(levelRoom.transform); */
 
         //Generate the level end
         GameObject nextEnd = Instantiate(levelEnd , spawnPoint);
@@ -71,6 +69,48 @@ public class LevelGen : MonoBehaviour
     private void ChangeRoomNumber(GameObject numberContainer){
         roomNumber++;
         numberContainer.GetComponent<TMP_Text>().text = roomNumber.ToString();
+    }
+
+
+    public void GenerateMainRoom(){
+        switch(LastRoom) {
+            case 0: 
+                NextRoom = Random.Range(1, 3);
+                LastRoom = NextRoom;
+                GameObject levelRoom = Instantiate(roomPrefabs[NextRoom], spawnPoint);
+                //move its parent
+                levelRoom.transform.parent = envContainer.transform;
+                //move the spawnpoint
+                SetNewSpawnPoint(levelRoom.transform);
+            break;
+
+            case 1: 
+                float tmpChance = Random.Range (0,1f);
+                if (tmpChance >= 0.5f){
+                    NextRoom = 0;
+                    LastRoom = NextRoom;
+                } else {
+                    NextRoom = 2;
+                    LastRoom = NextRoom;
+                }
+                GameObject levelRoom1 = Instantiate(roomPrefabs[NextRoom], spawnPoint);
+                //move its parent
+                levelRoom1.transform.parent = envContainer.transform;
+                //move the spawnpoint
+                SetNewSpawnPoint(levelRoom1.transform);
+            break;
+
+            case 2: 
+                NextRoom = Random.Range(0, 2);
+                LastRoom = NextRoom;
+                GameObject levelRoom2 = Instantiate(roomPrefabs[NextRoom], spawnPoint);
+                //move its parent
+                levelRoom2.transform.parent = envContainer.transform;
+                //move the spawnpoint
+                SetNewSpawnPoint(levelRoom2.transform);
+            break;
+
+        }
     }
 
 

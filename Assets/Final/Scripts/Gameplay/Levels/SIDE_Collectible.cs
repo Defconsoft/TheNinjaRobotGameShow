@@ -6,9 +6,12 @@ public class SIDE_Collectible : MonoBehaviour
 {
     public GameObject spawnOrigin;
     private GameManager gameManager;
+    public GameObject moneyParticle;
+    private GameObject trashCan;
     public int scoreAmount;
 
     private void Start() {
+        trashCan = GameObject.Find("^TRASH");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlaySpawnCoin(transform.position);
     }
@@ -25,6 +28,9 @@ public class SIDE_Collectible : MonoBehaviour
         if (this.tag == "SideCollectible") {
             if (other.tag == "Player") {
                 spawnOrigin.GetComponent<SIDE_FireCollect>().coinsCollected ++;
+                GameObject clone = Instantiate(moneyParticle, transform);
+                clone.transform.parent = trashCan.transform;
+                Destroy(clone, 3f);
                 gameManager.AddScore(scoreAmount);
                 GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayCollectCoin(transform.position);
                 spawnOrigin.GetComponent<SIDE_FireCollect>().SpawnNextCollect();

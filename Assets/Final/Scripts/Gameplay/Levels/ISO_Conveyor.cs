@@ -67,7 +67,7 @@ public class ISO_Conveyor : MonoBehaviour
     }
 
     public void StartISOGame() {
-        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -515f), 1.5f);
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -544f), 1.5f);
         uIManager.InGameMoveIn();
         CoinsToCollect = gameManager.TotalCoins;
         removeFallAway = true;
@@ -122,7 +122,7 @@ public class ISO_Conveyor : MonoBehaviour
                     isFinished = true;
                     currentLerpTime = 0;
                     removeEndAway = true;
-                    gameManager.ConveyorFinish();
+                    gameManager.GameFinish();
                 }
             
             }

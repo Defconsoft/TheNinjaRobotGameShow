@@ -26,6 +26,7 @@ public class LevelDoorTrigger : MonoBehaviour
                 endPos = door.transform.position + door.transform.right * moveDistance;
                 GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayDoorOpen(door.transform.position);
                 StartCoroutine(LerpPosition(endPos, lerpTime));
+
             }
 
             if (close) {

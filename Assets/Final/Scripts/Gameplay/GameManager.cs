@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int TotalShooterEnemies;
     public int MaxShooterEnemies;
     public int EnemiesAddPerLevel;
+    public float fireRateIncrease;
 
     [Header ("Conveyor Variables")] 
     public int TotalCoins;
@@ -57,21 +58,22 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(scene.name);    
         }
 
-
+        if (Keyboard.current.gKey.wasPressedThisFrame){
+            GameObject.Find("LevelManager").GetComponent<LevelGen>().GenerateMainRoom();   
+        }      
     }
 
 
-    public void ShooterFinish(){
+    public void GameFinish(){
         TotalShooterEnemies = TotalShooterEnemies + EnemiesAddPerLevel;
-    }
-
-    public void ConveyorFinish(){
         TotalCoins = TotalCoins + CoinsToAdd;
-    }
-
-    public void FireCollectFinish(){
         TotalFireCoins = TotalFireCoins + FireCoinsToAdd;
     }
+
+    public void ShooterFinish(){
+        player.GetComponent<PlayerShooting>().fireRate = player.GetComponent<PlayerShooting>().fireRate + fireRateIncrease;
+    }
+
 
 
     IEnumerator StartMainGame() {

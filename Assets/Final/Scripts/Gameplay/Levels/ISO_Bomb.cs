@@ -8,6 +8,7 @@ public class ISO_Bomb : MonoBehaviour
     private GameObject player;
     private GameManager gameManager;
     public GameObject explosionParticle;
+    public GameObject moneyParticle;
     public GameObject trashCan;
     public float damageAmount;
     public int scoreAmount;
@@ -36,6 +37,9 @@ public class ISO_Bomb : MonoBehaviour
             if (other.tag == "Player") {
                 GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayIsoCollect(false);
                 GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayCollectCoin(transform.position);
+                GameObject clone = Instantiate(moneyParticle, transform);
+                clone.transform.parent = trashCan.transform;
+                Destroy(clone, 3f);
                 spawnOrigin.GetComponent<ISO_Conveyor>().CoinsCollected++;
                 gameManager.AddScore(scoreAmount);
                 Destroy(this.gameObject);

@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOrigin: {fileID: 0}
+  moneyParticle: {fileID: 1530339630390668, guid: aa8bfed7e0410cf4696a3a39e2a1476d, type: 3}
   scoreAmount: 100
 --- !u!114 &7009902589180378886
 MonoBehaviour:

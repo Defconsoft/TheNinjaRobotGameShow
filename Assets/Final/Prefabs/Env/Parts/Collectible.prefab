@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4119794728634494965}
   - component: {fileID: 8844700152958213152}
   - component: {fileID: 6171881926560073044}
+  - component: {fileID: 3940865029123381047}
   m_Layer: 0
   m_Name: Collectible
   m_TagString: IsoCollectible
@@ -95,7 +96,7 @@ MeshCollider:
   m_GameObject: {fileID: 8046333844331825637}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -129,6 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOrigin: {fileID: 0}
+  explosionParticle: {fileID: 0}
+  moneyParticle: {fileID: 1530339630390668, guid: aa8bfed7e0410cf4696a3a39e2a1476d, type: 3}
+  trashCan: {fileID: 0}
   damageAmount: 0.1
   scoreAmount: 100
   isCoin: 1
@@ -143,5 +147,18 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9964994, y: 0.99649537, z: 0.9964951}
-  m_Center: {x: 0.000000074505806, y: 0, z: -0.000000044703484}
+  m_Size: {x: 0.5, y: 0.99649537, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3940865029123381047
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046333844331825637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.29411927
+  m_Center: {x: 0, y: 0, z: 0}

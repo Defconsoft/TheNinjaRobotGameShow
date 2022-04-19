@@ -6,6 +6,7 @@ public class EndLevelTrigger : MonoBehaviour
 {
 
     private UIManager uIManager;
+    public Transform movePoint;
 
     private void Start() {
         uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();  
@@ -15,8 +16,7 @@ public class EndLevelTrigger : MonoBehaviour
 
         if (other.tag == "Player") {
             Destroy (this.GetComponent<BoxCollider>());
-            other.transform.GetComponent<PlayerMovement>().moveVolume = 0;
-            uIManager.EndLevelBegin(transform, this.gameObject.transform.parent.transform.GetChild(0).gameObject);
+            uIManager.EndLevelBegin(movePoint, this.gameObject.transform.parent.transform.GetChild(0).gameObject);
         }
     }
 }

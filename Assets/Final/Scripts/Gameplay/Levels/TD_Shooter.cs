@@ -52,7 +52,7 @@ public class TD_Shooter : MonoBehaviour
 
 
     public void StartTDGame(){
-        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -515f), 1.5f);
+        CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -544f), 1.5f);
         numberEnemies = gameManager.TotalShooterEnemies;
         MaxEnemies = gameManager.MaxShooterEnemies;
         inProgress = true;
@@ -110,6 +110,7 @@ public class TD_Shooter : MonoBehaviour
                 playerShooting.canShoot = false;
                 EndTrigger.SetActive (true);
                 gameManager.ShooterFinish();
+                gameManager.GameFinish();
                 player.GetComponent<PlayerMovement>().canMove = false;
                 inProgress = false;
                 StartCoroutine(EndTDGame());
