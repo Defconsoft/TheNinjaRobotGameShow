@@ -11,6 +11,8 @@ public class EndSceneUIManager : MonoBehaviour
     public Button StartBtn;
     bool changingLevel;
     public Image nextLevelImage;
+    private GameManager gameManager;
+    public Text scoreText;
     public Sprite[] levelSprites;
     public LevelGen levelGen;
     // Start is called before the first frame update
@@ -18,6 +20,7 @@ public class EndSceneUIManager : MonoBehaviour
     {
         UIcamera = Camera.main;
         levelGen = GameObject.Find("LevelManager").GetComponent<LevelGen>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         StartBtn.onClick.RemoveAllListeners();
         StartBtn.onClick.AddListener(() => GameObject.Find("UIManager").GetComponent<UIManager>().StartNextLevel());
         StartCoroutine(CycleSprites());
@@ -30,7 +33,7 @@ public class EndSceneUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        scoreText.text = "$"+gameManager.Score.ToString();
     }
 
     public void SetTheNextLevelGraphic() {

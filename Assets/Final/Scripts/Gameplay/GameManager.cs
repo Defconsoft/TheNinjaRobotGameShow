@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    [Header ("DEBUG")]
+    public bool Testing; 
     
     [Header ("Game States")] 
     public int GameMode; //0 - Traversal, 1 - TopDownShooter, 2 - Side On, 3 - Isometric, 4 - UI, 5 - Title, 6 - Death
@@ -25,14 +27,19 @@ public class GameManager : MonoBehaviour
     [Header ("Conveyor Variables")] 
     public int TotalCoins;
     public int CoinsToAdd;
+    public float conveySpeed;
+    public float speedIncrease;
 
     [Header ("FireCollect Variables")] 
     public int TotalFireCoins;
     public int FireCoinsToAdd;
+    public float fireDamageIncrease;
+    public float fireDamage;
 
     [Header ("Other Variables")]
-    private UIManager uiManager;
     public int Score;
+    private UIManager uiManager;
+
 
     [Header("Lights")]
     public GameObject PlayerLight;
@@ -44,8 +51,19 @@ public class GameManager : MonoBehaviour
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         player = GameObject.Find("Player");
         //Turn on the title screen
-        uiManager.TitleScreen.enabled = true;
-        StartCoroutine(StartMainGame());
+        if (Testing){
+            uiManager.TitleScreen.enabled = true;
+            StartCoroutine(StartMainGame());
+        } else {
+            
+            if (GameObject.Find("DND").GetComponent<ReplayHolder>().hasPlayed){
+                uiManager.StartGameAgain();
+            } else {
+                uiManager.TitleScreen.enabled = true;
+                StartCoroutine(StartMainGame());
+                GameObject.Find("DND").GetComponent<ReplayHolder>().hasPlayed = true;
+            }
+        }
         DOTween.SetTweensCapacity(1250,50);
 
 
@@ -72,6 +90,14 @@ public class GameManager : MonoBehaviour
 
     public void ShooterFinish(){
         player.GetComponent<PlayerShooting>().fireRate = player.GetComponent<PlayerShooting>().fireRate + fireRateIncrease;
+    }
+
+    public void ConveyorFinish(){
+        conveySpeed = conveySpeed + speedIncrease;
+    }
+
+    public void GrabFinish(){
+        fireDamage = fireDamage + fireDamageIncrease;
     }
 
 

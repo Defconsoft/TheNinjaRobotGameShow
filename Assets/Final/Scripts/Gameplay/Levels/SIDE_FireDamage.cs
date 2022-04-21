@@ -10,6 +10,7 @@ public class SIDE_FireDamage : MonoBehaviour
 
     private void Start() {
         player = GameObject.Find("Player");
+        damageAmount = GameObject.Find("GameManager").GetComponent<GameManager>().fireDamage;    
     }
 
 

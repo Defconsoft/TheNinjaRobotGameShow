@@ -340,7 +340,7 @@ public class SFXManager : MonoBehaviour
     }
 
     public void PlayClapLoops(){
-        GameObject soundGameObject = new GameObject("sfx");
+        GameObject soundGameObject = new GameObject("clapLoops");
         soundGameObject.transform.parent = SoundContainer;
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.clip = audienceClaps;

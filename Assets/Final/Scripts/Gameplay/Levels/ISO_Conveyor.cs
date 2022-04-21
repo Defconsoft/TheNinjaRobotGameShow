@@ -123,6 +123,7 @@ public class ISO_Conveyor : MonoBehaviour
                     currentLerpTime = 0;
                     removeEndAway = true;
                     gameManager.GameFinish();
+                    gameManager.ConveyorFinish();
                 }
             
             }

@@ -13,6 +13,7 @@ public class ISO_ConveyorBelt : MonoBehaviour
 
     public void Start(){
         moveTrigger = GetComponent<BoxCollider>();
+        speed = GameObject.Find("GameManager").GetComponent<GameManager>().conveySpeed;
     }
 
     public void Update(){

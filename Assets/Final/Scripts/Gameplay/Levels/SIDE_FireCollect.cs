@@ -78,6 +78,7 @@ public class SIDE_FireCollect : MonoBehaviour
                     //child.transform.position = new Vector3(-300, child.transform.position.y, child.transform.position.z);
                 }
                 gameManager.GameFinish();
+                gameManager.GrabFinish();
                 EndTrigger.SetActive (true);
             }
         }
