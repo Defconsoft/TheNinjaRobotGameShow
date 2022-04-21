@@ -16,6 +16,7 @@ public class SIDE_FireDamage : MonoBehaviour
 
     private void OnParticleCollision(GameObject other) {
         if (other.tag == "Player") {
+            GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayFireDamage();
             player.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
         }
     }

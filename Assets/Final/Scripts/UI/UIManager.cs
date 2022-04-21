@@ -151,6 +151,7 @@ public class UIManager : MonoBehaviour
 
     public void StartGameAgain(){
         GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayNextContestant();
+        GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayClapLoops();
         camSwitcher.camState = 4;
         gameManager.GameMode = 4;
     }

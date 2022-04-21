@@ -30,6 +30,9 @@ public class SpeechManager : MonoBehaviour
     private bool IsoCollect;
     private float IsoCollectTime;
 
+    private bool firetaken;
+    private float fireTakenTime;
+
     private bool ShootBullet;
     private float ShootTimer;
 
@@ -108,6 +111,32 @@ public class SpeechManager : MonoBehaviour
     IEnumerator StartIsoCollectTimer(){
         yield return new WaitForSeconds(IsoCollectTime);
         IsoCollect = false;
+    }
+
+    public void PlayFireDamage(){
+
+        if (!firetaken){
+            firetaken = true;
+            float tempfloat = Random.Range(0,1f);
+            if (tempfloat >= 0.5f){
+                int soundChoice = Random.Range(0, fireDamage.Length);
+                GameObject soundGameObject = new GameObject("speech");
+                soundGameObject.transform.parent = SoundContainer;
+                AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+                audioSource.clip = fireDamage[soundChoice];
+                audioSource.PlayOneShot(fireDamage[soundChoice]);
+                fireTakenTime = fireDamage[soundChoice].length;
+                Destroy(soundGameObject, fireDamage[soundChoice].length);
+            }
+            
+            StartCoroutine(StartFireTakenTimer());
+        }
+    }
+
+    IEnumerator StartFireTakenTimer(){
+        yield return new WaitForSeconds(fireTakenTime);
+        yield return new WaitForSeconds(1f);
+        firetaken = false;
     }
 
     public void PlayYouLose(){
