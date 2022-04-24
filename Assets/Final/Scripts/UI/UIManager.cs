@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
         //5
         CountDownBox.text = timer.ToString();
         timer--;
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (1.5f);
         //4
         GameObject.Find("SoundManager").GetComponent<SpeechManager>().EpisodeStartSpeech2();
         CountDownBox.text = timer.ToString();
@@ -150,6 +150,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void StartGameAgain(){
+        RandomiseThePlayer();
+        SetTheNextLevelGraphic();
         GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayNextContestant();
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayClapLoops();
         camSwitcher.camState = 4;
