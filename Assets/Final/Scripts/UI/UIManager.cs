@@ -239,7 +239,7 @@ public class UIManager : MonoBehaviour
         playerMovement.canMove = true;
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayImpending();
         GameObject.Find("SoundManager").GetComponent<SpeechManager>().PlayNextGame();
-        InGameMoveIn();
+        //InGameMoveIn();
         currentEnd.GetComponent<EndSceneUIManager>().StartBtn.interactable = false;
     }
 

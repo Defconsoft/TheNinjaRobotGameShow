@@ -118,7 +118,7 @@ public class ISO_Conveyor : MonoBehaviour
                     if (!isFinished) {
                     isActive = false;
                     player.GetComponent<PlayerMovement>().canMove = false;
-                    StartCoroutine(EndTDGame());
+                    StartCoroutine(EndISOGame());
                     isFinished = true;
                     currentLerpTime = 0;
                     removeEndAway = true;
@@ -136,7 +136,7 @@ public class ISO_Conveyor : MonoBehaviour
         }
     }
 
-    private IEnumerator EndTDGame(){
+    private IEnumerator EndISOGame(){
         CanvasPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -705f), 1.5f);
         uIManager.InGameMoveOut();
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayCrowdHappy(player.transform.position);
@@ -148,20 +148,26 @@ public class ISO_Conveyor : MonoBehaviour
 
         var sequence = DOTween.Sequence();
         sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
-        sequence.AppendInterval(3f);
+        sequence.AppendInterval(2.5f);
         sequence.Append(WinBG.GetComponent<RectTransform>().DOScale(new Vector3 (0, 0, 0), 0.5f));
 
         var sequence1 = DOTween.Sequence();
 
-        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 104f), 1.5f).SetEase(Ease.OutQuart));
+        sequence1.AppendInterval(0.5f);
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 122f), 1.5f));
+        sequence1.Join(You.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
         sequence1.AppendInterval(1f);
-        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 694f), 1.5f).SetEase(Ease.InQuart));
+        sequence1.Append(You.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 0), 0.5f));
+        sequence1.Join(You.GetComponent<RectTransform>().DOScale(new Vector3 (0, 0, 0), 0.5f));
 
         var sequence2 = DOTween.Sequence();
 
-        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -122f), 1.5f).SetEase(Ease.OutQuart));
         sequence2.AppendInterval(1f);
-        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -694f), 1.5f).SetEase(Ease.InQuart));
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, -122f), 1.5f));
+        sequence2.Join(Win.GetComponent<RectTransform>().DOScale(new Vector3 (1, 1, 1), 1.5f));
+        sequence2.AppendInterval(1f);
+        sequence2.Append(Win.GetComponent<RectTransform>().DOAnchorPos(new Vector2 (0, 0), 1.5f));
+        sequence2.Join(Win.GetComponent<RectTransform>().DOScale(new Vector3 (0, 0, 0), 0.5f));
 
         yield return new WaitForSeconds(5f);
         player.GetComponent<PlayerMovement>().canMove = true;

@@ -40,7 +40,7 @@ public class EndSceneUIManager : MonoBehaviour
         changingLevel = true;
         nextLevelImage.sprite = levelSprites[levelGen.NextRoom];
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayGameSelect(this.transform.position);
-        nextLevelImage.GetComponent<RectTransform>().DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 1f, 10, 1f);
+        nextLevelImage.GetComponent<RectTransform>().DOPunchScale(new Vector3(1f, 1f, 1f), 1f, 5, 1f);
     }
 
 

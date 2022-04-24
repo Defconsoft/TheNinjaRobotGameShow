@@ -22,6 +22,11 @@ public class PlayerHealth : MonoBehaviour
     public bool Dead;
     public bool HitEffect;
 
+    public MeshRenderer[] RobotParts;
+    public float blinkIntensity;
+    public float blinkDuration;
+    public float blinkTimer;
+
     private void Start() {
         player = GameObject.Find("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -46,6 +51,17 @@ public class PlayerHealth : MonoBehaviour
             Health = 0;
         }
 
+
+        blinkTimer -= Time.deltaTime;
+        float lerp = Mathf.Clamp01(blinkTimer / blinkDuration);
+        float intensity = (lerp * blinkIntensity) + 1.0f;
+        foreach (MeshRenderer RobotPart in RobotParts)
+        {
+           RobotPart.material.color = Color.white * intensity; 
+        }
+        
+
+
     }
 
 
@@ -60,10 +76,15 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator PlayHitEffect(){
         HitEffect = true;
         SpawnHitParticle();
+        blinkTimer = blinkDuration;
         GameObject.Find("SoundManager").GetComponent<SFXManager>().PlayPlayerHit(this.transform.position);
         yield return new WaitForSeconds(0.3f);
+
         HitEffect = false;
     }
+
+
+
 
     public void SpawnHitParticle(){
         GameObject clone = Instantiate(hitParticle, transform);

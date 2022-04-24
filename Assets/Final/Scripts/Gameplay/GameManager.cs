@@ -90,6 +90,9 @@ public class GameManager : MonoBehaviour
 
     public void ShooterFinish(){
         player.GetComponent<PlayerShooting>().fireRate = player.GetComponent<PlayerShooting>().fireRate + fireRateIncrease;
+        if (MaxShooterEnemies < 10) {
+            MaxShooterEnemies = MaxShooterEnemies++;
+        }
     }
 
     public void ConveyorFinish(){

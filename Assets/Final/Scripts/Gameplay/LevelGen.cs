@@ -22,6 +22,7 @@ public class LevelGen : MonoBehaviour
     void Start()
     {
         SetNewSpawnPoint(startObject.transform);
+        LastRoom = Random.Range(0,roomPrefabs.Length);
         GenerateNextRoom();
     }
 
@@ -38,7 +39,7 @@ public class LevelGen : MonoBehaviour
 
         
         GenerateMainRoom();
-/*         //then spawn a level room
+/*      //then spawn a level room
         NextRoom = Random.Range(0, roomPrefabs.Length);
         GameObject levelRoom = Instantiate(roomPrefabs[NextRoom], spawnPoint);
         //move its parent
@@ -53,6 +54,8 @@ public class LevelGen : MonoBehaviour
         //move the spawnpoint
         SetNewSpawnPoint(nextEnd.transform);
     }
+
+
 
 
     private void SetNewSpawnPoint(Transform parent) {
